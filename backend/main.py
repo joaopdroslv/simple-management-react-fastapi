@@ -1,7 +1,7 @@
+from db import products
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from products import products
 
 app = FastAPI()
 

@@ -17,7 +17,7 @@ function ProductsView() {
     <Container className="mt-5 mb-5">
       <div className="d-flex align-items-center gap-3">
         <List size={40} />
-        <h1 className="fs-1">Products</h1>
+        <h1 className="fs-2">Products</h1>
       </div>
       <p className="text-secondary">
         All available products.
