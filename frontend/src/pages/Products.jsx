@@ -18,12 +18,12 @@ function Products() {
     <Container className="mt-5 mb-5">
       <div className="d-flex align-items-center gap-3">
         <List size={36} />
-        <h1 style={{ marginBottom: "0px" }}>Listing all products</h1>
+        <h1 style={{ marginBottom: "0px" }}>Products listing</h1>
       </div>
       <hr className="mt-3 mb-3" />
       <div className="d-flex justify-content-end align-items-center mt-4 mb-4">
         <Button variant="success" className="d-flex align-items-center gap-3">
-          <CirclePlus size={24} />
+          <CirclePlus size={20} />
           Add
         </Button>
       </div>

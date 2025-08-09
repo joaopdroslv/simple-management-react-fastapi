@@ -11,7 +11,7 @@ function ProductsUpdateModal({ show, handleClose, product }) {
       <Modal.Header closeButton>
         <Modal.Title className="d-flex align-items-center gap-2">
           <SquarePen size={30} />
-          Edit
+          <h2 style={{ marginBottom: "0px" }}>Edit</h2>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -19,7 +19,9 @@ function ProductsUpdateModal({ show, handleClose, product }) {
           <Form>
             <Form.Group as={Row} className="mb-3">
               <Col sm="2" className="d-flex align-items-center">
-                <Form.Label>Name</Form.Label>
+                <Form.Label>
+                  <strong>Name</strong>
+                </Form.Label>
               </Col>
               <Col sm="10">
                 <Form.Control type="text" defaultValue={product.name} />
@@ -28,7 +30,9 @@ function ProductsUpdateModal({ show, handleClose, product }) {
 
             <Form.Group as={Row} className="mb-3">
               <Col sm="2" className="d-flex align-items-center">
-                <Form.Label>Category</Form.Label>
+                <Form.Label>
+                  <strong>Category</strong>
+                </Form.Label>
               </Col>
               <Col sm="10">
                 <Form.Control type="text" defaultValue={product.category} />
@@ -37,7 +41,9 @@ function ProductsUpdateModal({ show, handleClose, product }) {
 
             <Form.Group as={Row} className="mb-3">
               <Col sm="2" className="d-flex align-items-center">
-                <Form.Label>Price</Form.Label>
+                <Form.Label>
+                  <strong>Price</strong>
+                </Form.Label>
               </Col>
               <Col sm="10">
                 <Form.Control type="text" defaultValue={product.price} />
@@ -46,7 +52,9 @@ function ProductsUpdateModal({ show, handleClose, product }) {
 
             <Form.Group as={Row}>
               <Col sm="2" className="d-flex align-items-center">
-                <Form.Label>Stock</Form.Label>
+                <Form.Label>
+                  <strong>Stock</strong>
+                </Form.Label>
               </Col>
               <Col sm="10">
                 <Form.Control type="text" defaultValue={product.stock} />
@@ -67,7 +75,7 @@ function ProductsUpdateModal({ show, handleClose, product }) {
             onClick={handleClose}
             className="d-flex align-items-center gap-2"
           >
-            <CircleCheckBig size={24} />
+            <CircleCheckBig size={20} />
             Save Changes
           </Button>
         </Modal.Footer>

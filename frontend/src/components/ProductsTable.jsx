@@ -57,7 +57,7 @@ function ProductsTable({ products }) {
                       className="d-flex align-items-center gap-2"
                       onClick={() => handleOpenUpdateModal(product)}
                     >
-                      <SquarePen size={24} />
+                      <SquarePen size={20} />
                       Edit
                     </Button>
                     <Button
@@ -65,7 +65,7 @@ function ProductsTable({ products }) {
                       size="sm"
                       className="d-flex align-items-center gap-2"
                     >
-                      <Trash size={24} />
+                      <Trash size={20} />
                       Delete
                     </Button>
                   </div>
