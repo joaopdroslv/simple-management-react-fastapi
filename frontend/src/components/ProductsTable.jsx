@@ -1,5 +1,4 @@
 import Table from "react-bootstrap/Table";
-import Container from "react-bootstrap/Container";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import ProductsUpdateModal from "./ProductsUpdateModal";
@@ -21,7 +20,7 @@ function ProductsTable({ products }) {
   };
 
   return (
-    <Container className="mt-5 mb-5">
+    <>
       <Table striped hover>
         <thead>
           <tr>
@@ -88,7 +87,7 @@ function ProductsTable({ products }) {
         handleClose={handleCloseUpdateModal}
         product={selectedProduct}
       />
-    </Container>
+    </>
   );
 }
 

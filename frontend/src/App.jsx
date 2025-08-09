@@ -1,7 +1,7 @@
-import ProductsView from "./components/ProductsView";
+import Products from "./pages/Products";
 
 function App() {
-  return <ProductsView />;
+  return <Products />;
 }
 
 export default App;

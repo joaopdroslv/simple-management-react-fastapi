@@ -44,7 +44,7 @@ function ProductsUpdateModal({ show, handleClose, product }) {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} className="mb-3">
+            <Form.Group as={Row}>
               <Col sm="2" className="d-flex align-items-center">
                 <Form.Label>Stock</Form.Label>
               </Col>
@@ -52,25 +52,28 @@ function ProductsUpdateModal({ show, handleClose, product }) {
                 <Form.Control type="text" defaultValue={product.stock} />
               </Col>
             </Form.Group>
-
-            <Form.Group className="d-flex justify-content-end gap-3 mt-4">
-              <Button variant="outline-danger" onClick={handleClose}>
-                Cancel
-              </Button>
-              <Button
-                variant="outline-success"
-                onClick={handleClose}
-                className="d-flex align-items-center gap-2"
-              >
-                <CircleCheckBig size={24} />
-                Save Changes
-              </Button>
-            </Form.Group>
           </Form>
         ) : (
           <p>No product selected.</p>
         )}
       </Modal.Body>
+      {product ? (
+        <Modal.Footer>
+          <Button variant="outline-danger" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button
+            variant="outline-success"
+            onClick={handleClose}
+            className="d-flex align-items-center gap-2"
+          >
+            <CircleCheckBig size={24} />
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      ) : (
+        <p>No product selected.</p>
+      )}
     </Modal>
   );
 }
