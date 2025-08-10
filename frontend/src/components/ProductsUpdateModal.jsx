@@ -7,9 +7,9 @@ import { CircleCheckBig, SquarePen } from "lucide-react";
 
 function ProductsUpdateModal({ show, handleClose, product }) {
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal size="lg" centered show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title className="d-flex align-items-center gap-2">
+        <Modal.Title className="d-flex align-items-center gap-3">
           <SquarePen size={30} />
           <h2 style={{ marginBottom: "0px" }}>Edit</h2>
         </Modal.Title>
@@ -76,7 +76,7 @@ function ProductsUpdateModal({ show, handleClose, product }) {
             className="d-flex align-items-center gap-2"
           >
             <CircleCheckBig size={20} />
-            Save Changes
+            Confirm
           </Button>
         </Modal.Footer>
       ) : (
