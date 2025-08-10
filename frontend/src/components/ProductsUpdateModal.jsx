@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { CircleCheckBig, SquarePen } from "lucide-react";
+import { CircleCheckBig, CircleX, SquarePen } from "lucide-react";
 
 function ProductsUpdateModal({ show, handleClose, product }) {
   return (
@@ -67,7 +67,12 @@ function ProductsUpdateModal({ show, handleClose, product }) {
       </Modal.Body>
       {product ? (
         <Modal.Footer>
-          <Button variant="outline-danger" onClick={handleClose}>
+          <Button
+            variant="outline-danger"
+            onClick={handleClose}
+            className="d-flex align-items-center gap-2"
+          >
+            <CircleX size={20} />
             Cancel
           </Button>
           <Button

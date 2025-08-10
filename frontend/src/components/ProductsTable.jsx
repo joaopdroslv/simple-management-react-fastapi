@@ -4,9 +4,11 @@ import Button from "react-bootstrap/Button";
 import ProductsUpdateModal from "./ProductsUpdateModal";
 import Badge from "react-bootstrap/Badge";
 import { Trash, SquarePen } from "lucide-react";
+import ConfirmationModal from "./ConfirmationModal";
 
 function ProductsTable({ products }) {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const handleOpenUpdateModal = (product) => {
@@ -17,6 +19,14 @@ function ProductsTable({ products }) {
   const handleCloseUpdateModal = () => {
     setSelectedProduct(null);
     setShowUpdateModal(false);
+  };
+
+  const handleOpenConfirmationModal = () => {
+    setShowConfirmationModal(true);
+  };
+
+  const handleCloseConfirmationModal = () => {
+    setShowConfirmationModal(false);
   };
 
   return (
@@ -64,6 +74,7 @@ function ProductsTable({ products }) {
                       variant="outline-danger"
                       size="sm"
                       className="d-flex align-items-center gap-2"
+                      onClick={() => handleOpenConfirmationModal()}
                     >
                       <Trash size={20} />
                       Delete
@@ -86,6 +97,11 @@ function ProductsTable({ products }) {
         show={showUpdateModal}
         handleClose={handleCloseUpdateModal}
         product={selectedProduct}
+      />
+
+      <ConfirmationModal
+        show={showConfirmationModal}
+        handleClose={handleCloseConfirmationModal}
       />
     </>
   );
