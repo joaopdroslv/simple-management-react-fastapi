@@ -2,6 +2,7 @@ from db import products
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from schemas.product import UpdateProduct
 
 app = FastAPI()
 
@@ -23,6 +24,13 @@ def get_products():
     )
 
 
+@app.put("/products/id")
+def update_product(id: int, product: UpdateProduct):
+
+    print("PRODUCT DATA TO UPDATE")
+    print(product.model_dump())
+
+
 @app.delete("/products/{id}")
 def delete_product(id: int):
 
@@ -31,6 +39,6 @@ def delete_product(id: int):
     print(f"PRODUCT ID [ {id} ]")
 
     return JSONResponse(
-        status_code=204,
-        content={"code": 204, "success": True, "message": "Product delete successfully."}
+        status_code=200,
+        content={"code": 200, "success": True, "message": "Product delete successfully."}
     )

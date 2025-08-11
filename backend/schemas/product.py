@@ -1,6 +1,6 @@
 from typing import List
 
-from category import Category
+from .category import Category
 from pydantic import BaseModel
 
 
@@ -12,3 +12,10 @@ class Product(BaseModel):
     price: float = 0.0
     stock: int
     available: bool
+
+
+class UpdateProduct(BaseModel):
+    name: str = None
+    category: str = None
+    price: float = None
+    stock: int = None
