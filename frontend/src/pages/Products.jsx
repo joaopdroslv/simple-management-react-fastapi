@@ -18,11 +18,29 @@ function Products() {
     setShowCreateModal(false);
   };
 
+  /*
+    - This useEffect now depends on "showCreateModal"
+    - When the modal is closed, it activates the interval to fetch data every 30 seconds
+    - When the modal is opened, it cancels the interval because the effect will run again when the modal closes
+  */
   useEffect(() => {
-    getProducts()
-      .then((response) => setProducts(response.resources.products))
-      .catch(console.error);
-  }, []);
+    // fetch products function
+    const fetchProducts = () => {
+      getProducts()
+        .then((response) => setProducts(response.resources.products))
+        .catch(console.error);
+    };
+
+    fetchProducts();
+
+    if (!showCreateModal) {
+      // If the modal is not open, set up a interval to fetch data repeatedly
+      const intervalId = setInterval(fetchProducts, 30000);
+      return () => clearInterval(intervalId); // cleanup: clear the interval; it will be re-established if modal remains closed
+    }
+
+    return undefined; // no cleanup needed if modal is open
+  }, [showCreateModal]); // runs effect when showCreateModal changes
 
   return (
     <>
