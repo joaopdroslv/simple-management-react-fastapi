@@ -1,12 +1,15 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { CircleCheckBig, CircleX } from "lucide-react";
+import { CircleCheckBig, CircleX, MessageCircleWarning } from "lucide-react";
 
 function ConfirmationModal({ show, handleClose, onConfirm }) {
   return (
     <Modal centered show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Confirmation required!</Modal.Title>
+        <Modal.Title className="d-flex align-items-center gap-3">
+          <MessageCircleWarning size={30} />
+          <h2 style={{ marginBottom: "0px" }}>Confirmation</h2>
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         Are you sure you want to perform this action? It is irreversible.
