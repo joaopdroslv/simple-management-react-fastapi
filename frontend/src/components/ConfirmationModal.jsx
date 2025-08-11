@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { CircleCheckBig, CircleX } from "lucide-react";
 
-function ConfirmationModal({ show, handleClose }) {
+function ConfirmationModal({ show, handleClose, onConfirm }) {
   return (
     <Modal centered show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -14,16 +14,16 @@ function ConfirmationModal({ show, handleClose }) {
       <Modal.Footer>
         <Button
           variant="outline-danger"
-          onClick={handleClose}
           className="d-flex align-items-center gap-2"
+          onClick={handleClose}
         >
           <CircleX size={20} />
           Cancel action
         </Button>
         <Button
           variant="outline-success"
-          onClick={handleClose}
           className="d-flex align-items-center gap-2"
+          onClick={() => onConfirm()}
         >
           <CircleCheckBig size={20} />
           Yeah! I'm sure

@@ -10,7 +10,7 @@ function Products() {
   const [products, setProducts] = useState(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
 
-  const handleOpenCreateModal = (product) => {
+  const handleOpenCreateModal = () => {
     setShowCreateModal(true);
   };
 
@@ -42,7 +42,7 @@ function Products() {
             Add
           </Button>
         </div>
-        <ProductsTable products={products} />
+        <ProductsTable products={products} setProducts={setProducts} />
       </Container>
 
       <ProductsCreateModal

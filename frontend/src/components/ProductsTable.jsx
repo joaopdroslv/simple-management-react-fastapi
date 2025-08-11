@@ -5,11 +5,13 @@ import ProductsUpdateModal from "./ProductsUpdateModal";
 import Badge from "react-bootstrap/Badge";
 import { Trash, SquarePen } from "lucide-react";
 import ConfirmationModal from "./ConfirmationModal";
+import { deleteProduct } from "../api";
 
-function ProductsTable({ products }) {
+function ProductsTable({ products, setProducts }) {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [productToDelete, setProductToDelete] = useState(null);
 
   const handleOpenUpdateModal = (product) => {
     setSelectedProduct(product);
@@ -21,12 +23,28 @@ function ProductsTable({ products }) {
     setShowUpdateModal(false);
   };
 
-  const handleOpenConfirmationModal = () => {
+  const handleOpenConfirmationModal = (product) => {
+    setProductToDelete(product);
     setShowConfirmationModal(true);
   };
 
   const handleCloseConfirmationModal = () => {
+    setProductToDelete(null);
     setShowConfirmationModal(false);
+  };
+
+  const handleDeleteProductConfirmed = async () => {
+    if (!productToDelete) return;
+
+    await deleteProduct(productToDelete.id);
+
+    // Removing the delete product from the table
+    setProducts((prev) =>
+      prev.filter((product) => product.id !== productToDelete.id)
+    );
+
+    // Closing the confirmation modal...
+    handleCloseConfirmationModal();
   };
 
   return (
@@ -74,7 +92,7 @@ function ProductsTable({ products }) {
                       variant="outline-danger"
                       size="sm"
                       className="d-flex align-items-center gap-2"
-                      onClick={() => handleOpenConfirmationModal()}
+                      onClick={() => handleOpenConfirmationModal(product)}
                     >
                       <Trash size={20} />
                       Delete
@@ -102,6 +120,7 @@ function ProductsTable({ products }) {
       <ConfirmationModal
         show={showConfirmationModal}
         handleClose={handleCloseConfirmationModal}
+        onConfirm={handleDeleteProductConfirmed} // post-confirmation callback function
       />
     </>
   );
