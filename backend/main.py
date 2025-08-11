@@ -27,8 +27,18 @@ def get_products():
 @app.put("/products/id")
 def update_product(id: int, product: UpdateProduct):
 
-    print("PRODUCT DATA TO UPDATE")
+    print(f"PRODUCT ID [ {id} ]")
+    print("PRODUCT DATA")
     print(product.model_dump())
+
+    return JSONResponse(
+        status_code=200,
+        content={
+            "code": 200,
+            "success": True,
+            "message": "Product updated successfully.",
+        },
+    )
 
 
 @app.delete("/products/{id}")
@@ -40,5 +50,9 @@ def delete_product(id: int):
 
     return JSONResponse(
         status_code=200,
-        content={"code": 200, "success": True, "message": "Product delete successfully."}
+        content={
+            "code": 200,
+            "success": True,
+            "message": "Product delete successfully.",
+        },
     )
