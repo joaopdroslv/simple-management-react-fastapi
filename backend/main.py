@@ -24,7 +24,7 @@ def get_products():
     )
 
 
-@app.put("/products/id")
+@app.put("/products/{id}")
 def update_product(id: int, product: UpdateProduct):
 
     print(f"PRODUCT ID [ {id} ]")

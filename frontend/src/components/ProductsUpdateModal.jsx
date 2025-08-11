@@ -4,8 +4,44 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { CircleCheckBig, CircleX, SquarePen } from "lucide-react";
+import { useEffect, useState } from "react";
+import { updateProduct } from "../api";
 
 function ProductsUpdateModal({ show, handleClose, product }) {
+  // Initializes formData empty as default
+  const [formData, setFormData] = useState({
+    name: "",
+    category: "",
+    price: "",
+    stock: "",
+  });
+
+  /*
+    Uses a useEffect that “listens” for changes in the product to
+    update the state every time the product changes
+  */
+  useEffect(() => {
+    setFormData({
+      name: product?.name || "",
+      category: product?.category || "",
+      price: product?.price || "",
+      stock: product?.stock || "",
+    });
+  }, [product]);
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await updateProduct(product.id, formData);
+    handleClose();
+  };
+
   return (
     <Modal size="lg" centered show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -15,78 +51,90 @@ function ProductsUpdateModal({ show, handleClose, product }) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {product ? (
-          <Form>
-            <Form.Group as={Row} className="mb-3">
-              <Col sm="2" className="d-flex align-items-center">
-                <Form.Label>
-                  <strong>Name</strong>
-                </Form.Label>
-              </Col>
-              <Col sm="10">
-                <Form.Control type="text" defaultValue={product.name} />
-              </Col>
-            </Form.Group>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group as={Row} className="mb-3">
+            <Col sm="2" className="d-flex align-items-center">
+              <Form.Label>
+                <strong>Name</strong>
+              </Form.Label>
+            </Col>
+            <Col sm="10">
+              <Form.Control
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </Col>
+          </Form.Group>
 
-            <Form.Group as={Row} className="mb-3">
-              <Col sm="2" className="d-flex align-items-center">
-                <Form.Label>
-                  <strong>Category</strong>
-                </Form.Label>
-              </Col>
-              <Col sm="10">
-                <Form.Control type="text" defaultValue={product.category} />
-              </Col>
-            </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Col sm="2" className="d-flex align-items-center">
+              <Form.Label>
+                <strong>Category</strong>
+              </Form.Label>
+            </Col>
+            <Col sm="10">
+              <Form.Control
+                type="text"
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+              />
+            </Col>
+          </Form.Group>
 
-            <Form.Group as={Row} className="mb-3">
-              <Col sm="2" className="d-flex align-items-center">
-                <Form.Label>
-                  <strong>Price</strong>
-                </Form.Label>
-              </Col>
-              <Col sm="10">
-                <Form.Control type="text" defaultValue={product.price} />
-              </Col>
-            </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Col sm="2" className="d-flex align-items-center">
+              <Form.Label>
+                <strong>Price</strong>
+              </Form.Label>
+            </Col>
+            <Col sm="10">
+              <Form.Control
+                type="text"
+                name="price"
+                value={formData.price}
+                onChange={handleChange}
+              />
+            </Col>
+          </Form.Group>
 
-            <Form.Group as={Row}>
-              <Col sm="2" className="d-flex align-items-center">
-                <Form.Label>
-                  <strong>Stock</strong>
-                </Form.Label>
-              </Col>
-              <Col sm="10">
-                <Form.Control type="text" defaultValue={product.stock} />
-              </Col>
-            </Form.Group>
-          </Form>
-        ) : (
-          <p>No product selected.</p>
-        )}
+          <Form.Group as={Row}>
+            <Col sm="2" className="d-flex align-items-center">
+              <Form.Label>
+                <strong>Stock</strong>
+              </Form.Label>
+            </Col>
+            <Col sm="10">
+              <Form.Control
+                type="text"
+                name="stock"
+                value={formData.stock}
+                onChange={handleChange}
+              />
+            </Col>
+          </Form.Group>
+          <Modal.Footer className="mt-3" style={{ marginBottom: "0px" }}>
+            <Button
+              variant="outline-danger"
+              onClick={handleClose}
+              className="d-flex align-items-center gap-2"
+            >
+              <CircleX size={20} />
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              variant="outline-success"
+              className="d-flex align-items-center gap-2"
+            >
+              <CircleCheckBig size={20} />
+              Confirm
+            </Button>
+          </Modal.Footer>
+        </Form>
       </Modal.Body>
-      {product ? (
-        <Modal.Footer>
-          <Button
-            variant="outline-danger"
-            onClick={handleClose}
-            className="d-flex align-items-center gap-2"
-          >
-            <CircleX size={20} />
-            Cancel
-          </Button>
-          <Button
-            variant="outline-success"
-            onClick={handleClose}
-            className="d-flex align-items-center gap-2"
-          >
-            <CircleCheckBig size={20} />
-            Confirm
-          </Button>
-        </Modal.Footer>
-      ) : (
-        <p>No product selected.</p>
-      )}
     </Modal>
   );
 }
