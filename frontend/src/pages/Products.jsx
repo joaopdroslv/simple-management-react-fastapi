@@ -8,6 +8,7 @@ import ProductsCreateModal from "../components/ProductsCreateModal";
 import ProductsUpdateModal from "../components/ProductsUpdateModal";
 import ConfirmationModal from "../components/ConfirmationModal";
 import { deleteProduct } from "../api";
+import ProductCard from "../components/ui/ProductCard";
 
 function Products() {
   const [products, setProducts] = useState(null);
@@ -82,7 +83,7 @@ function Products() {
 
   return (
     <>
-      <head
+      <header
         className="d-flex align-items-center shadow-sm"
         style={{
           backgroundColor: "var(--dark-red)",
@@ -94,7 +95,7 @@ function Products() {
           <List size={30} />
           <h1 className="mb-0">Products</h1>
         </Container>
-      </head>
+      </header>
 
       <section className="mt-4 mb-4">
         <Container
@@ -119,11 +120,44 @@ function Products() {
           className="rounded p-5 shadow-sm"
           style={{ backgroundColor: "white" }}
         >
-          <ProductsTable
+          {/* <ProductsTable
             products={products}
             onEditProduct={handleOpenUpdateModal}
             onDeleteProduct={handleOpenConfirmationModal}
-          />
+          /> */}
+          {[
+            {
+              id: 1,
+              name: "Something",
+              category: "Electronics",
+              price: 99.99,
+              stock: 99,
+              available: true,
+            },
+            {
+              id: 2,
+              name: "Another Thing",
+              category: "Clothing",
+              price: 49.99,
+              stock: 50,
+              available: true,
+            },
+            {
+              id: 3,
+              name: "Cool Gadget",
+              category: "Electronics",
+              price: 199.99,
+              stock: 20,
+              available: true,
+            },
+          ].map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              onEdit={handleOpenUpdateModal}
+              onDelete={handleOpenConfirmationModal}
+            />
+          ))}
         </Container>
       </section>
 

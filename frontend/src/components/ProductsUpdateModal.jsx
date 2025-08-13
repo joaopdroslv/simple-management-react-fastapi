@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { CircleCheckBig, CircleX, SquarePen } from "lucide-react";
+import { CircleCheckBig, CircleX, Pencil } from "lucide-react";
 import { useEffect, useState } from "react";
 import { updateProduct } from "../api";
 
@@ -46,12 +46,12 @@ function ProductsUpdateModal({ show, handleClose, product }) {
     <Modal size="lg" centered show={show} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title className="d-flex align-items-center gap-3">
-          <SquarePen size={30} />
-          <h2 style={{ marginBottom: "0px" }}>Edit</h2>
+          <Pencil size={30} />
+          <h2 className="mb-0">Edit</h2>
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <Form onSubmit={handleSubmit}>
+      <Modal.Body className="ps-5 pe-5 mt-4 mb-4">
+        <Form id="productUpdateForm" onSubmit={handleSubmit}>
           <Form.Group as={Row} className="mb-3">
             <Col sm="2" className="d-flex align-items-center">
               <Form.Label>
@@ -115,26 +115,28 @@ function ProductsUpdateModal({ show, handleClose, product }) {
               />
             </Col>
           </Form.Group>
-          <Modal.Footer className="mt-3" style={{ marginBottom: "0px" }}>
-            <Button
-              variant="outline-danger"
-              onClick={handleClose}
-              className="d-flex align-items-center gap-2"
-            >
-              <CircleX size={20} />
-              Cancel
-            </Button>
-            <Button
-              type="submit"
-              variant="outline-success"
-              className="d-flex align-items-center gap-2"
-            >
-              <CircleCheckBig size={20} />
-              Confirm
-            </Button>
-          </Modal.Footer>
         </Form>
       </Modal.Body>
+      <Modal.Footer>
+        <Button
+          variant="outline-danger"
+          onClick={handleClose}
+          className="d-flex align-items-center gap-2"
+        >
+          <CircleX size={20} />
+          Cancel
+        </Button>
+        <Button
+          variant="outline-success"
+          className="d-flex align-items-center gap-2"
+          onClick={() =>
+            document.getElementById("productUpdateForm").requestSubmit()
+          }
+        >
+          <CircleCheckBig size={20} />
+          Confirm
+        </Button>
+      </Modal.Footer>
     </Modal>
   );
 }

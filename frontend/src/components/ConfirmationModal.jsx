@@ -8,7 +8,7 @@ function ConfirmationModal({ show, handleClose, onConfirm }) {
       <Modal.Header closeButton>
         <Modal.Title className="d-flex align-items-center gap-3">
           <MessageCircleWarning size={30} />
-          <h2 style={{ marginBottom: "0px" }}>Confirmation</h2>
+          <h2 className="mb-0">Confirmation</h2>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -21,7 +21,7 @@ function ConfirmationModal({ show, handleClose, onConfirm }) {
           onClick={handleClose}
         >
           <CircleX size={20} />
-          Cancel action
+          Cancel
         </Button>
         <Button
           variant="outline-success"
