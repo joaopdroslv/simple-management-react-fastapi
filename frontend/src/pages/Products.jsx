@@ -71,14 +71,14 @@ function Products() {
 
     fetchProducts();
 
-    if (!showCreateModal) {
+    if (!showCreateModal && !showUpdateModal) {
       // If the modal is not open, set up a interval to fetch data repeatedly
       const intervalId = setInterval(fetchProducts, 30000);
       return () => clearInterval(intervalId); // Cleanup: clear the interval; it will be re-established if modal remains closed
     }
 
     return undefined; // No cleanup needed if modal is open
-  }, [showCreateModal]); // Runs effect when showCreateModal changes
+  }, [showCreateModal, showUpdateModal]); // Runs effect when showCreateModal changes
 
   return (
     <>
