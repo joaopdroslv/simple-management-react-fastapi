@@ -82,29 +82,50 @@ function Products() {
 
   return (
     <>
-      <Container className="mt-5 mb-5">
-        <div className="d-flex align-items-center gap-3">
-          <List size={36} />
-          <h1 style={{ marginBottom: "0px" }}>Products listing</h1>
-        </div>
-        <hr className="mt-3 mb-3" />
-        <div className="d-flex justify-content-end align-items-center mt-4 mb-4">
-          <Button
-            variant="success"
-            className="d-flex align-items-center gap-3"
-            onClick={handleOpenCreateModal}
-          >
-            <CirclePlus size={20} />
-            Add
-          </Button>
-        </div>
+      <head
+        className="d-flex align-items-center shadow-sm"
+        style={{
+          backgroundColor: "var(--dark-red)",
+          color: "var(--light-grey)",
+          height: "125px",
+        }}
+      >
+        <Container className="d-flex align-items-center gap-3">
+          <List size={30} />
+          <h1 className="mb-0">Products</h1>
+        </Container>
+      </head>
 
-        <ProductsTable
-          products={products}
-          onEditProduct={handleOpenUpdateModal}
-          onDeleteProduct={handleOpenConfirmationModal}
-        />
-      </Container>
+      <section className="mt-4 mb-4">
+        <Container
+          className="rounded p-5 shadow-sm"
+          style={{ backgroundColor: "white" }}
+        >
+          <div className="d-flex justify-content-end align-items-center">
+            <Button
+              variant="outline-success"
+              className="d-flex align-items-center gap-3"
+              onClick={handleOpenCreateModal}
+            >
+              <CirclePlus size={20} />
+              Add a product
+            </Button>
+          </div>
+        </Container>
+      </section>
+
+      <section className="mt-4 mb-4">
+        <Container
+          className="rounded p-5 shadow-sm"
+          style={{ backgroundColor: "white" }}
+        >
+          <ProductsTable
+            products={products}
+            onEditProduct={handleOpenUpdateModal}
+            onDeleteProduct={handleOpenConfirmationModal}
+          />
+        </Container>
+      </section>
 
       <ProductsCreateModal
         show={showCreateModal}

@@ -2,10 +2,11 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 import { Trash, SquarePen } from "lucide-react";
+import Spinner from "react-bootstrap/Spinner";
 
 function ProductsTable({ products, onEditProduct, onDeleteProduct }) {
   return (
-    <Table striped hover>
+    <Table striped hover className="shadow-sm">
       <thead>
         <tr>
           <th>#</th>
@@ -59,8 +60,8 @@ function ProductsTable({ products, onEditProduct, onDeleteProduct }) {
           ))
         ) : (
           <tr>
-            <td colSpan={7} className="text-center">
-              Loading products...
+            <td colSpan={7} className="d-flex- align-items-center text-center p-3">
+              <Spinner animation="border" />
             </td>
           </tr>
         )}

@@ -1,8 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
+:root {
+  --dark-red: #a71a36;
+  --dark-grey: #999999;
+  --light-grey: #f2f2f2;
+}
+
 body {
   font-family: "Roboto", sans-serif;
+  background-color: var(--light-grey);
 }
 
 h1,
