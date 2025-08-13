@@ -5,10 +5,17 @@ import { useState, useEffect } from "react";
 import { List, CirclePlus } from "lucide-react";
 import Button from "react-bootstrap/Button";
 import ProductsCreateModal from "../components/ProductsCreateModal";
+import ProductsUpdateModal from "../components/ProductsUpdateModal";
+import ConfirmationModal from "../components/ConfirmationModal";
+import { deleteProduct } from "../api";
 
 function Products() {
   const [products, setProducts] = useState(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [productToDelete, setProductToDelete] = useState(null);
 
   const handleOpenCreateModal = () => {
     setShowCreateModal(true);
@@ -16,6 +23,37 @@ function Products() {
 
   const handleCloseCreateModal = () => {
     setShowCreateModal(false);
+  };
+
+  const handleOpenUpdateModal = (product) => {
+    setSelectedProduct(product);
+    setShowUpdateModal(true);
+  };
+
+  const handleCloseUpdateModal = () => {
+    setSelectedProduct(null);
+    setShowUpdateModal(false);
+  };
+
+  const handleOpenConfirmationModal = (product) => {
+    setProductToDelete(product);
+    setShowConfirmationModal(true);
+  };
+
+  const handleCloseConfirmationModal = () => {
+    setProductToDelete(null);
+    setShowConfirmationModal(false);
+  };
+
+  const handleDeleteProductConfirmed = async () => {
+    if (!productToDelete) return;
+
+    await deleteProduct(productToDelete.id);
+    // Removing the delete product from the table
+    setProducts((prev) =>
+      prev.filter((product) => product.id !== productToDelete.id)
+    );
+    handleCloseConfirmationModal();
   };
 
   /*
@@ -36,11 +74,11 @@ function Products() {
     if (!showCreateModal) {
       // If the modal is not open, set up a interval to fetch data repeatedly
       const intervalId = setInterval(fetchProducts, 30000);
-      return () => clearInterval(intervalId); // cleanup: clear the interval; it will be re-established if modal remains closed
+      return () => clearInterval(intervalId); // Cleanup: clear the interval; it will be re-established if modal remains closed
     }
 
-    return undefined; // no cleanup needed if modal is open
-  }, [showCreateModal]); // runs effect when showCreateModal changes
+    return undefined; // No cleanup needed if modal is open
+  }, [showCreateModal]); // Runs effect when showCreateModal changes
 
   return (
     <>
@@ -60,12 +98,29 @@ function Products() {
             Add
           </Button>
         </div>
-        <ProductsTable products={products} setProducts={setProducts} />
+
+        <ProductsTable
+          products={products}
+          onEditProduct={handleOpenUpdateModal}
+          onDeleteProduct={handleOpenConfirmationModal}
+        />
       </Container>
 
       <ProductsCreateModal
         show={showCreateModal}
         handleClose={handleCloseCreateModal}
+      />
+
+      <ProductsUpdateModal
+        show={showUpdateModal}
+        handleClose={handleCloseUpdateModal}
+        product={selectedProduct}
+      />
+
+      <ConfirmationModal
+        show={showConfirmationModal}
+        handleClose={handleCloseConfirmationModal}
+        onConfirm={handleDeleteProductConfirmed} // post-confirmation callback function
       />
     </>
   );
