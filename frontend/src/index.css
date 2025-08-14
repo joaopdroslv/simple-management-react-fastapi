@@ -17,3 +17,13 @@ h2,
 h3 {
   font-family: "Archivo Black", sans-serif;
 }
+
+.product-card {
+  background-color: #ffffff;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.product-card:hover {
+  cursor: pointer;
+  background-color: #f2f2f2;
+}

@@ -65,7 +65,7 @@ function ProductsCreateModal({ show, handleClose }) {
         <Button
           variant="outline-danger"
           onClick={handleClose}
-          className="d-flex align-items-center gap-2"
+          className="p-2 d-flex align-items-center gap-2 shadow-sm"
         >
           <CircleX size={20} />
           Cancel
@@ -73,7 +73,7 @@ function ProductsCreateModal({ show, handleClose }) {
         <Button
           variant="outline-success"
           onClick={handleClose}
-          className="d-flex align-items-center gap-2"
+          className="p-2 d-flex align-items-center gap-2 shadow-sm"
           // onClick={() =>
           //   document.getElementById("productCreateForm").requestSubmit()
           // }

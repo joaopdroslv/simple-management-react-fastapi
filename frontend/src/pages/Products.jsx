@@ -98,17 +98,14 @@ function Products() {
       </header>
 
       <section className="mt-4 mb-4">
-        <Container
-          className="rounded p-5 shadow-sm"
-          style={{ backgroundColor: "white" }}
-        >
+        <Container className="bg-white rounded p-5 shadow-sm">
           <div className="d-flex justify-content-end align-items-center">
             <Button
               variant="outline-success"
-              className="d-flex align-items-center gap-3"
+              className="p-2 d-flex align-items-center gap-2 shadow-sm"
               onClick={handleOpenCreateModal}
             >
-              <CirclePlus size={20} />
+              <CirclePlus size={24} />
               Add a product
             </Button>
           </div>
@@ -116,10 +113,7 @@ function Products() {
       </section>
 
       <section className="mt-4 mb-4">
-        <Container
-          className="rounded p-5 shadow-sm"
-          style={{ backgroundColor: "white" }}
-        >
+        <Container className="bg-white rounded p-5 shadow-sm">
           {/* <ProductsTable
             products={products}
             onEditProduct={handleOpenUpdateModal}

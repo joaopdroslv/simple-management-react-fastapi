@@ -121,14 +121,14 @@ function ProductsUpdateModal({ show, handleClose, product }) {
         <Button
           variant="outline-danger"
           onClick={handleClose}
-          className="d-flex align-items-center gap-2"
+          className="p-2 d-flex align-items-center gap-2 shadow-sm"
         >
           <CircleX size={20} />
           Cancel
         </Button>
         <Button
           variant="outline-success"
-          className="d-flex align-items-center gap-2"
+          className="p-2 d-flex align-items-center gap-2 shadow-sm"
           onClick={() =>
             document.getElementById("productUpdateForm").requestSubmit()
           }

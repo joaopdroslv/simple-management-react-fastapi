@@ -1,4 +1,3 @@
-import React from "react";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,7 +7,7 @@ import Badge from "react-bootstrap/Badge";
 
 function ProductCard({ product, onEdit, onDelete }) {
   return (
-    <Card className="mt-3 mb-3 p-1 d-flex justify-content-center">
+    <Card className="product-card mt-3 mb-3 p-1 d-flex justify-content-center shadow-sm">
       <Card.Body as={Row}>
         <Col sm={1}>
           <p>
@@ -60,28 +59,28 @@ function ProductCard({ product, onEdit, onDelete }) {
             <Button
               variant="outline-success"
               size="sm"
-              className="p-2 d-flex align-items-center"
+              className="p-2 d-flex align-items-center shadow-sm"
               style={{ borderRadius: "100px" }}
               onClick={() => onEdit(product)}
             >
-              <Pencil size={14} />
+              <Pencil size={16} />
             </Button>
             <Button
               variant="outline-danger"
               size="sm"
-              className="p-2 d-flex align-items-center"
+              className="p-2 d-flex align-items-center shadow-sm"
               style={{ borderRadius: "100px" }}
               onClick={() => onDelete(product)}
             >
-              <Trash size={14} />
+              <Trash size={16} />
             </Button>
             <Button
               variant="outline-info"
               size="sm"
-              className="p-2 d-flex align-items-center"
+              className="p-2 d-flex align-items-center shadow-sm"
               style={{ borderRadius: "100px" }}
             >
-              <ArrowDownUp size={14} />
+              <ArrowDownUp size={16} />
             </Button>
           </div>
         </Col>

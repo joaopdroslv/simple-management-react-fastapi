@@ -17,7 +17,7 @@ function ConfirmationModal({ show, handleClose, onConfirm }) {
       <Modal.Footer>
         <Button
           variant="outline-danger"
-          className="d-flex align-items-center gap-2"
+          className="p-2 d-flex align-items-center gap-2 shadow-sm"
           onClick={handleClose}
         >
           <CircleX size={20} />
@@ -25,7 +25,7 @@ function ConfirmationModal({ show, handleClose, onConfirm }) {
         </Button>
         <Button
           variant="outline-success"
-          className="d-flex align-items-center gap-2"
+          className="p-2 d-flex align-items-center gap-2 shadow-sm"
           onClick={() => onConfirm()}
         >
           <CircleCheckBig size={20} />
