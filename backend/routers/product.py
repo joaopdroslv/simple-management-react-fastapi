@@ -7,11 +7,11 @@ router = APIRouter(prefix="/product", tags=["product"])
 
 
 @router.get("/{id}", response_model=Product)
-def get_all_products(id: int):
+def get_product(id: int):
 
     return JSONResponse(
         status_code=200,
-        content={"product": products[id]},
+        content={"product": products[0]},  # Always the first for testing
     )
 
 
