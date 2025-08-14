@@ -9,13 +9,13 @@ function ProductCard({ product, onEdit, onDelete }) {
   return (
     <Card className="product-card mt-3 mb-3 p-1 d-flex justify-content-center shadow-sm">
       <Card.Body as={Row}>
-        <Col sm={1}>
+        <Col>
           <p>
             <strong>#</strong>
           </p>
           <p>{product.id}</p>
         </Col>
-        <Col sm={2}>
+        <Col>
           <p>
             <strong>Name</strong>
           </p>

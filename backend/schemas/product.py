@@ -12,14 +12,18 @@ class Product(BaseModel):
     available: bool
 
 
-class CreateProduct(BaseModel):
+class GetProducts(BaseModel):
+    products: List[Product]
+
+
+class CreateProductForm(BaseModel):
     name: str
     category: str
     price: float
     stock: int
 
 
-class UpdateProduct(BaseModel):
+class UpdateProductForm(BaseModel):
     name: str = None
     category: str = None
     price: float = None

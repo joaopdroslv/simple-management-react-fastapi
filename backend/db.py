@@ -1,12 +1,36 @@
 categories = [
-    "Electronics",
-    "Smartphones",
-    "Appliances",
-    "Footwear",
-    "Accessories",
-    "Audio",
-    "Gaming",
-    "Smart Home",
+    {
+        "id": 1,
+        "name": "Electronics",
+    },
+    {
+        "id": 2,
+        "name": "Smartphones",
+    },
+    {
+        "id": 3,
+        "name": "Appliances",
+    },
+    {
+        "id": 4,
+        "name": "Footwear",
+    },
+    {
+        "id": 5,
+        "name": "Accessories",
+    },
+    {
+        "id": 6,
+        "name": "Audio",
+    },
+    {
+        "id": 7,
+        "name": "Gaming",
+    },
+    {
+        "id": 8,
+        "name": "Smart Home",
+    },
 ]
 
 products = [
