@@ -2,13 +2,14 @@ import Container from "react-bootstrap/Container";
 import ProductsTable from "../components/ProductsTable";
 import { getProducts } from "../api";
 import { useState, useEffect } from "react";
-import { List, CirclePlus } from "lucide-react";
+import { List, CirclePlus, Search } from "lucide-react";
 import Button from "react-bootstrap/Button";
 import ProductsCreateModal from "../components/ProductsCreateModal";
 import ProductsUpdateModal from "../components/ProductsUpdateModal";
 import ConfirmationModal from "../components/ConfirmationModal";
 import { deleteProduct } from "../api";
 import ProductCard from "../components/ui/ProductCard";
+import ProductsFilter from "../components/ProductsFilter";
 
 function Products() {
   const [products, setProducts] = useState(null);
@@ -99,7 +100,8 @@ function Products() {
 
       <section className="mt-4 mb-4">
         <Container className="bg-white rounded p-5 shadow-sm">
-          <div className="d-flex justify-content-end align-items-center">
+          <ProductsFilter />
+          <div className="d-flex justify-content-end align-items-center gap-3">
             <Button
               variant="outline-success"
               className="p-2 d-flex align-items-center gap-2 shadow-sm"
