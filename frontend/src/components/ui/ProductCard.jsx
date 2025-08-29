@@ -7,10 +7,7 @@ import Badge from "react-bootstrap/Badge";
 
 function ProductCard({ product, onEdit, onDelete }) {
   return (
-    <Card
-      className="product-card mt-3 mb-3 p-1 d-flex justify-content-center shadow-sm"
-      style={{ border: "0px" }}
-    >
+    <Card className="product-card mt-3 mb-3 p-1 d-flex justify-content-center shadow-sm">
       <Card.Body as={Row}>
         <Col>
           <p>
@@ -32,7 +29,7 @@ function ProductCard({ product, onEdit, onDelete }) {
         </Col>
         <Col>
           <p>
-            <strong>Unit Price</strong>
+            <strong>Unit Price ($)</strong>
           </p>
           <p>$ {product.price}</p>
         </Col>
