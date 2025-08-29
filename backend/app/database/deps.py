@@ -7,7 +7,7 @@ def get_db():
     db = SessionLocal()
     try:
         yield db
-    except:
+    finally:
         db.close()
 
 
@@ -16,5 +16,5 @@ def get_db_context():
     db = SessionLocal()
     try:
         yield db
-    except:
+    finally:
         db.close()
