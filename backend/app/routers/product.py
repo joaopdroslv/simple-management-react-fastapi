@@ -1,6 +1,5 @@
 import logging
 
-from app.db import products
 from app.schemas.product import (
     CreateProductForm,
     GetAllProductsResponse,
@@ -20,7 +19,7 @@ def get_product(id: int):
 
     return JSONResponse(
         status_code=200,
-        content={"product": products[0]},  # Always the first for testing
+        content={"product": {}},  # Always the first for testing
     )
 
 
@@ -29,7 +28,7 @@ def get_all_products():
 
     return JSONResponse(
         status_code=200,
-        content={"products": products},
+        content={"products": []},
     )
 
 
