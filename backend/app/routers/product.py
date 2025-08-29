@@ -20,9 +20,7 @@ router = APIRouter(prefix="/product", tags=["product"])
 @router.get("/{id}", response_model=ProductResponse)
 def get_product(id: int):
 
-    return JSONResponse(
-        status_code=200, content={"product": {}}
-    )
+    return JSONResponse(status_code=200, content={"product": {}})
 
 
 @router.get("", response_model=GetAllProductsResponse)
