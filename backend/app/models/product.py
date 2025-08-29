@@ -12,13 +12,13 @@ class Product(Base):
     name = Column(VARCHAR(length=255), nullable=False)
     price = Column(DECIMAL(10, 2), nullable=False)
     stock = Column(INTEGER, nullable=False)
-    category_id = Column(INTEGER, ForeignKey("category.id"), nullable=False)
     created_at = Column(DATETIME, server_default=func.now(), nullable=False)
     updated_at = Column(
         DATETIME, server_default=func.now(), onupdate=func.now(), nullable=False
     )
 
-    category = column_property(
+    category_id = Column(INTEGER, ForeignKey("category.id"), nullable=False)
+    category_name = column_property(
         select([Category.name]).where(Category.id == category_id).scalar_subquery()
     )
 
