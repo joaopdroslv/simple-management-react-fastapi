@@ -1,11 +1,10 @@
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
 
 function ProductsFilter() {
   return (
-    <Form className="mt-4 mb-4">
+    <Form className="mt-4 mb-4 ps-5 pe-5">
       <Form.Group as={Row} className="mb-3">
         <Col sm="2" className="d-flex align-items-center">
           <Form.Label>
@@ -13,7 +12,7 @@ function ProductsFilter() {
           </Form.Label>
         </Col>
         <Col sm="10">
-          <Form.Control type="text" name="name" defaultValue="..." />
+          <Form.Control type="text" name="name" defaultValue="" />
         </Col>
       </Form.Group>
 
@@ -24,7 +23,7 @@ function ProductsFilter() {
           </Form.Label>
         </Col>
         <Col sm="10">
-          <Form.Control type="text" name="category" defaultValue="..." />
+          <Form.Control type="text" name="category" defaultValue="" />
         </Col>
       </Form.Group>
 
@@ -35,7 +34,7 @@ function ProductsFilter() {
           </Form.Label>
         </Col>
         <Col sm="10">
-          <Form.Control type="text" name="price" defaultValue="..." />
+          <Form.Control type="text" name="price" defaultValue="" />
         </Col>
       </Form.Group>
 
@@ -46,7 +45,7 @@ function ProductsFilter() {
           </Form.Label>
         </Col>
         <Col sm="10">
-          <Form.Control type="text" name="stock" defaultValue="..." />
+          <Form.Control type="text" name="stock" defaultValue="" />
         </Col>
       </Form.Group>
     </Form>

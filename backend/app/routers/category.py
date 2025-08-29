@@ -1,7 +1,7 @@
-from db import categories
+from app.db import categories
+from app.schemas.category import GetCategories
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
-from schemas.category import GetCategories
 
 router = APIRouter(prefix="/category", tags=["category"])
 

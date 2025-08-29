@@ -7,7 +7,10 @@ import Badge from "react-bootstrap/Badge";
 
 function ProductCard({ product, onEdit, onDelete }) {
   return (
-    <Card className="product-card mt-3 mb-3 p-1 d-flex justify-content-center shadow-sm">
+    <Card
+      className="product-card mt-3 mb-3 p-1 d-flex justify-content-center shadow-sm"
+      style={{ border: "0px" }}
+    >
       <Card.Body as={Row}>
         <Col>
           <p>

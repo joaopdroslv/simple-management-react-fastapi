@@ -1,7 +1,7 @@
+from app.routers.category import router as category_router
+from app.routers.product import router as product_router
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers.category import router as category_router
-from routers.product import router as product_router
 
 app = FastAPI()
 

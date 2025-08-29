@@ -1,12 +1,17 @@
-from db import products
+from app.db import products
+from app.schemas.product import (
+    CreateProductForm,
+    GetAllProductsResponse,
+    ProductResponse,
+    UpdateProductForm,
+)
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
-from schemas.product import CreateProductForm, GetProducts, Product, UpdateProductForm
 
 router = APIRouter(prefix="/product", tags=["product"])
 
 
-@router.get("/{id}", response_model=Product)
+@router.get("/{id}", response_model=ProductResponse)
 def get_product(id: int):
 
     return JSONResponse(
@@ -15,7 +20,7 @@ def get_product(id: int):
     )
 
 
-@router.get("/", response_model=GetProducts)
+@router.get("/", response_model=GetAllProductsResponse)
 def get_all_products():
 
     return JSONResponse(

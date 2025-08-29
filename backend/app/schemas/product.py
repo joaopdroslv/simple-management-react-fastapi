@@ -3,7 +3,7 @@ from typing import List
 from pydantic import BaseModel
 
 
-class Product(BaseModel):
+class ProductResponse(BaseModel):
     id: int
     name: str
     category: str
@@ -12,8 +12,8 @@ class Product(BaseModel):
     available: bool
 
 
-class GetProducts(BaseModel):
-    products: List[Product]
+class GetAllProductsResponse(BaseModel):
+    products: List[ProductResponse]
 
 
 class CreateProductForm(BaseModel):

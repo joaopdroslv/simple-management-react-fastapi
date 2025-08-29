@@ -87,7 +87,7 @@ function Products() {
       <header
         className="d-flex align-items-center shadow-sm"
         style={{
-          backgroundColor: "var(--dark-red)",
+          backgroundColor: "var(--primary-color)",
           color: "var(--light-grey)",
           height: "125px",
         }}
@@ -98,13 +98,13 @@ function Products() {
         </Container>
       </header>
 
-      <section className="mt-4 mb-4">
+      <section className="mt-5 mb-4">
         <Container className="bg-white rounded p-5 shadow-sm">
           <ProductsFilter />
           <div className="d-flex justify-content-end align-items-center gap-3">
             <Button
               variant="outline-success"
-              className="p-2 d-flex align-items-center gap-2 shadow-sm"
+              className="p-2 d-flex align-items-center gap-2 shadow-sm mt-4"
               onClick={handleOpenCreateModal}
             >
               <CirclePlus size={24} />
