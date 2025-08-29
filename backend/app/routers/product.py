@@ -1,3 +1,5 @@
+import logging
+
 from app.db import products
 from app.schemas.product import (
     CreateProductForm,
@@ -7,6 +9,8 @@ from app.schemas.product import (
 )
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/product", tags=["product"])
 
@@ -20,7 +24,7 @@ def get_product(id: int):
     )
 
 
-@router.get("/", response_model=GetAllProductsResponse)
+@router.get("", response_model=GetAllProductsResponse)
 def get_all_products():
 
     return JSONResponse(
@@ -29,7 +33,7 @@ def get_all_products():
     )
 
 
-@router.post("/")
+@router.post("")
 def create_product(data: CreateProductForm):
 
     return JSONResponse(
