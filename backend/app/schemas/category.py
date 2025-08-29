@@ -3,10 +3,10 @@ from typing import List
 from pydantic import BaseModel
 
 
-class Category(BaseModel):
+class CategoryResponse(BaseModel):
     id: int
     name: str
 
 
-class GetCategories(BaseModel):
-    categories: List[Category]
+class GetAllCategoriesResponse(BaseModel):
+    categories: List[CategoryResponse]
