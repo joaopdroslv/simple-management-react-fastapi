@@ -1,7 +1,7 @@
 import logging
 
 from app.database.deps import get_db
-from app.models.product import Product
+from app.models import Product
 from app.schemas.product import (
     CreateProductForm,
     GetAllProductsResponse,
@@ -18,21 +18,20 @@ router = APIRouter(prefix="/product", tags=["product"])
 
 
 @router.get("/{id}", response_model=ProductResponse)
-def get_product(id: int):
+def get_product(id: int, db: Session = Depends(get_db)):
 
-    return JSONResponse(status_code=200, content={"product": {}})
+    product = db.query(Product).filter(Product.id == id).first()
+
+    return JSONResponse(status_code=200, content={"product": product.to_dict()})
 
 
-@router.get("", response_model=GetAllProductsResponse)
+@router.get("")
 def get_all_products(db: Session = Depends(get_db)):
 
-    # logger.info(products[0].__dict__)
+    products = db.query(Product).all()
+    products = [p.to_dict() for p in products]
 
-    return {"products": db.query(Product).all()}
-
-    # return JSONResponse(
-    #     status_code=200, content={"products": products}
-    # )
+    return JSONResponse(status_code=200, content={"products": products})
 
 
 @router.post("")
