@@ -3,7 +3,7 @@ from typing import List
 from pydantic import BaseModel
 
 
-class ProductResponse(BaseModel):
+class ResponseProduct(BaseModel):  # Deprecated
     id: int
     name: str
     price: float = 0.0
@@ -14,21 +14,15 @@ class ProductResponse(BaseModel):
     category_name: str
 
 
-class GetAllProductsResponse(BaseModel):
-    products: List[ProductResponse]
+class GetProductResponse(BaseModel):
+    product: ResponseProduct
 
 
-class CreateProductForm(BaseModel):
-    name: str
-    price: float
-    stock: int
-
-    category_id: int
+class GetProductsResponse(BaseModel):
+    products: List[ResponseProduct]
 
 
-class UpdateProductForm(BaseModel):
-    name: str = None
-    price: float = None
-    stock: int = None
+class CreateProductForm(BaseModel): ...
 
-    category_id: int = None
+
+class UpdateProductForm(BaseModel): ...

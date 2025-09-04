@@ -2,10 +2,11 @@ import logging
 
 from app.database.deps import get_db
 from app.models import Product
+from app.modules import product
 from app.schemas.product import (
     CreateProductForm,
-    GetAllProductsResponse,
-    ProductResponse,
+    GetProductsResponse,
+    ResponseProduct,
     UpdateProductForm,
 )
 from fastapi import APIRouter, Depends
@@ -17,7 +18,7 @@ logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/product", tags=["product"])
 
 
-@router.get("/{id}", response_model=ProductResponse)
+@router.get("/{id}", response_model=ResponseProduct)
 def get_product(id: int, db: Session = Depends(get_db)):
 
     product = db.query(Product).filter(Product.id == id).first()
@@ -26,12 +27,20 @@ def get_product(id: int, db: Session = Depends(get_db)):
 
 
 @router.get("")
-def get_all_products(db: Session = Depends(get_db)):
+def get_products(page: int = 1, limit: int = 10, db: Session = Depends(get_db)):
 
-    products = db.query(Product).all()
-    products = [p.to_dict() for p in products]
+    total, products = product.get_products(db, page, limit)
 
-    return JSONResponse(status_code=200, content={"products": products})
+    return {
+        "pagination": {
+            "page": page,
+            "limit": limit,
+            "total": total,
+        },
+        "products": [p.to_dict() for p in products],
+    }
+
+    # return JSONResponse(status_code=200, content={"products": products})
 
 
 @router.post("")

@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from app.database.db import Base
-
 from sqlalchemy import ForeignKey, func, select
 from sqlalchemy.dialects.mysql import DATETIME, INTEGER, TEXT, VARCHAR
 from sqlalchemy.orm import Mapped, column_property, mapped_column, relationship

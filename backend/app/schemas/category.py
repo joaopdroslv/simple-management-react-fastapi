@@ -3,10 +3,14 @@ from typing import List
 from pydantic import BaseModel
 
 
-class CategoryResponse(BaseModel):
+class CategoryResponse(BaseModel):  # Deprecated
     id: int
     name: str
 
 
-class GetAllCategoriesResponse(BaseModel):
+class GetCategoryResponse(BaseModel):
+    category: CategoryResponse
+
+
+class GetCategoriesResponse(BaseModel):
     categories: List[CategoryResponse]
