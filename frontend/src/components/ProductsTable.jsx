@@ -1,12 +1,12 @@
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
-import { Trash, SquarePen } from "lucide-react";
+import { Trash, SquarePen, Pencil, ArrowDownUp } from "lucide-react";
 import Spinner from "react-bootstrap/Spinner";
 
-function ProductsTable({ products, onEditProduct, onDeleteProduct }) {
+function ProductsTable({ products, onEdit, onDelete }) {
   return (
-    <Table striped hover className="shadow-sm">
+    <Table striped hover>
       <thead>
         <tr>
           <th>#</th>
@@ -35,24 +35,32 @@ function ProductsTable({ products, onEditProduct, onDeleteProduct }) {
                 )}
               </td>
               <td>
-                <div className="d-flex justify-content-center gap-2">
+                <div className="d-flex gap-2">
                   <Button
                     variant="outline-success"
                     size="sm"
-                    className="d-flex align-items-center gap-2"
-                    onClick={() => onEditProduct(product)}
+                    className="p-2 d-flex align-items-center shadow-sm"
+                    style={{ borderRadius: "100px" }}
+                    onClick={() => onEdit(product)}
                   >
-                    <SquarePen size={20} />
-                    Edit
+                    <Pencil size={16} />
                   </Button>
                   <Button
                     variant="outline-danger"
                     size="sm"
-                    className="d-flex align-items-center gap-2"
-                    onClick={() => onDeleteProduct(product)}
+                    className="p-2 d-flex align-items-center shadow-sm"
+                    style={{ borderRadius: "100px" }}
+                    onClick={() => onDelete(product)}
                   >
-                    <Trash size={20} />
-                    Delete
+                    <Trash size={16} />
+                  </Button>
+                  <Button
+                    variant="outline-info"
+                    size="sm"
+                    className="p-2 d-flex align-items-center shadow-sm"
+                    style={{ borderRadius: "100px" }}
+                  >
+                    <ArrowDownUp size={16} />
                   </Button>
                 </div>
               </td>
@@ -60,7 +68,10 @@ function ProductsTable({ products, onEditProduct, onDeleteProduct }) {
           ))
         ) : (
           <tr>
-            <td colSpan={7} className="d-flex- align-items-center text-center p-3">
+            <td
+              colSpan={7}
+              className="d-flex- align-items-center text-center p-3"
+            >
               <Spinner animation="border" />
             </td>
           </tr>

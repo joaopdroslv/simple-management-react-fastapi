@@ -116,12 +116,37 @@ function Products() {
 
       <section className="mt-4 mb-4">
         <Container className="bg-white rounded p-5 shadow-sm">
-          {/* <ProductsTable
-            products={products}
-            onEditProduct={handleOpenUpdateModal}
-            onDeleteProduct={handleOpenConfirmationModal}
-          /> */}
-          {[
+          <ProductsTable
+            products={[
+              {
+                id: 1,
+                name: "Something",
+                category: "Electronics",
+                price: 99.99,
+                stock: 99,
+                available: true,
+              },
+              {
+                id: 2,
+                name: "Another Thing",
+                category: "Clothing",
+                price: 49.99,
+                stock: 50,
+                available: true,
+              },
+              {
+                id: 3,
+                name: "Cool Gadget",
+                category: "Electronics",
+                price: 199.99,
+                stock: 20,
+                available: true,
+              },
+            ]}
+            onEdit={handleOpenUpdateModal}
+            onDelete={handleOpenConfirmationModal}
+          />
+          {/* {[
             {
               id: 1,
               name: "Something",
@@ -153,7 +178,7 @@ function Products() {
               onEdit={handleOpenUpdateModal}
               onDelete={handleOpenConfirmationModal}
             />
-          ))}
+          ))} */}
         </Container>
       </section>
 

@@ -23,7 +23,7 @@ function ProductsCreateModal({ show, handleClose }) {
               </Form.Label>
             </Col>
             <Col sm="10">
-              <Form.Control type="text" placeholder="..." />
+              <Form.Control type="text" />
             </Col>
           </Form.Group>
 
@@ -34,7 +34,7 @@ function ProductsCreateModal({ show, handleClose }) {
               </Form.Label>
             </Col>
             <Col sm="10">
-              <Form.Control type="text" placeholder="..." />
+              <Form.Control type="text" />
             </Col>
           </Form.Group>
 
@@ -45,7 +45,7 @@ function ProductsCreateModal({ show, handleClose }) {
               </Form.Label>
             </Col>
             <Col sm="10">
-              <Form.Control type="text" placeholder="..." />
+              <Form.Control type="text" />
             </Col>
           </Form.Group>
 
@@ -56,7 +56,7 @@ function ProductsCreateModal({ show, handleClose }) {
               </Form.Label>
             </Col>
             <Col sm="10">
-              <Form.Control type="text" placeholder="..." />
+              <Form.Control type="text" />
             </Col>
           </Form.Group>
         </Form>
