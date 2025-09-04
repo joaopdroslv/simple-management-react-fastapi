@@ -21,26 +21,30 @@ router = APIRouter(prefix="/product", tags=["product"])
 @router.get("/{id}", response_model=ResponseProduct)
 def get_product(id: int, db: Session = Depends(get_db)):
 
-    product = db.query(Product).filter(Product.id == id).first()
+    db_product = product.get_product(db, id)
 
-    return JSONResponse(status_code=200, content={"product": product.to_dict()})
+    if not db_product:
+        return JSONResponse(status_code=404, content={"message": "Product not found."})
+
+    return JSONResponse(status_code=200, content={"product": db_product.to_dict()})
 
 
 @router.get("")
 def get_products(page: int = 1, limit: int = 10, db: Session = Depends(get_db)):
 
-    total, products = product.get_products(db, page, limit)
+    total, db_products = product.get_products(db, page, limit)
 
-    return {
-        "pagination": {
-            "page": page,
-            "limit": limit,
-            "total": total,
+    return JSONResponse(
+        status_code=200,
+        content={
+            "pagination": {
+                "page": page,
+                "limit": limit,
+                "total": total,
+            },
+            "products": [p.to_dict() for p in db_products],
         },
-        "products": [p.to_dict() for p in products],
-    }
-
-    # return JSONResponse(status_code=200, content={"products": products})
+    )
 
 
 @router.post("")
