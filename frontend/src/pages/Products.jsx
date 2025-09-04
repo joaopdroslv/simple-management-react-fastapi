@@ -94,7 +94,7 @@ function Products() {
       >
         <Container className="d-flex align-items-center gap-3">
           <List size={30} />
-          <h1 className="mb-0">Products</h1>
+          <h1 className="mb-0">Products management</h1>
         </Container>
       </header>
 
@@ -104,6 +104,13 @@ function Products() {
           <div className="d-flex justify-content-end align-items-center gap-3">
             <Button
               variant="outline-success"
+              className="p-2 d-flex align-items-center gap-2 shadow-sm mt-4"
+            >
+              <Search size={24} />
+              Apply filter
+            </Button>
+            <Button
+              variant="outline-primary"
               className="p-2 d-flex align-items-center gap-2 shadow-sm mt-4"
               onClick={handleOpenCreateModal}
             >
@@ -122,25 +129,31 @@ function Products() {
                 id: 1,
                 name: "Something",
                 category: "Electronics",
-                price: 99.99,
-                stock: 99,
-                available: true,
+                supplier: "John Doe",
+                is_visible: true,
+                is_available: true,
+                unit_price: 9.99,
+                stock_quantity: 9,
               },
               {
                 id: 2,
-                name: "Another Thing",
+                name: "Useless Object",
                 category: "Clothing",
-                price: 49.99,
-                stock: 50,
-                available: true,
+                supplier: "Anne Frank",
+                is_visible: true,
+                is_available: true,
+                unit_price: 99.99,
+                stock_quantity: 99,
               },
               {
                 id: 3,
                 name: "Cool Gadget",
                 category: "Electronics",
-                price: 199.99,
-                stock: 20,
-                available: true,
+                supplier: "Jason Statham",
+                is_visible: false,
+                is_available: false,
+                unit_price: 199.99,
+                stock_quantity: 0,
               },
             ]}
             onEdit={handleOpenUpdateModal}

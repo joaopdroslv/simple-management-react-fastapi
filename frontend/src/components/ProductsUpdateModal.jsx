@@ -10,10 +10,7 @@ import { updateProduct } from "../api";
 function ProductsUpdateModal({ show, handleClose, product }) {
   // Initializes formData empty as default
   const [formData, setFormData] = useState({
-    name: "",
-    category: "",
-    price: "",
-    stock: "",
+    something: "",
   });
 
   /*
@@ -22,10 +19,7 @@ function ProductsUpdateModal({ show, handleClose, product }) {
   */
   useEffect(() => {
     setFormData({
-      name: product?.name || "",
-      category: product?.category || "",
-      price: product?.price || "",
-      stock: product?.stock || "",
+      something: product?.something || "",
     });
   }, [product]);
 
@@ -38,7 +32,9 @@ function ProductsUpdateModal({ show, handleClose, product }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await updateProduct(product.id, formData);
+    console.log(product.id);
+    console.log(formData);
+    // await updateProduct(product.id, formData);
     handleClose();
   };
 
@@ -52,65 +48,17 @@ function ProductsUpdateModal({ show, handleClose, product }) {
       </Modal.Header>
       <Modal.Body className="ps-5 pe-5 mt-4 mb-4">
         <Form id="productUpdateForm" onSubmit={handleSubmit}>
-          <Form.Group as={Row} className="mb-3">
-            <Col sm="2" className="d-flex align-items-center">
-              <Form.Label>
-                <strong>Name</strong>
+          <Form.Group as={Row} className="d-flex align-items-center">
+            <Col sm="2">
+              <Form.Label className="mb-0">
+                <strong>Something</strong>
               </Form.Label>
             </Col>
             <Col sm="10">
               <Form.Control
                 type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-            </Col>
-          </Form.Group>
-
-          <Form.Group as={Row} className="mb-3">
-            <Col sm="2" className="d-flex align-items-center">
-              <Form.Label>
-                <strong>Category</strong>
-              </Form.Label>
-            </Col>
-            <Col sm="10">
-              <Form.Control
-                type="text"
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-              />
-            </Col>
-          </Form.Group>
-
-          <Form.Group as={Row} className="mb-3">
-            <Col sm="2" className="d-flex align-items-center">
-              <Form.Label>
-                <strong>Price</strong>
-              </Form.Label>
-            </Col>
-            <Col sm="10">
-              <Form.Control
-                type="text"
-                name="price"
-                value={formData.price}
-                onChange={handleChange}
-              />
-            </Col>
-          </Form.Group>
-
-          <Form.Group as={Row}>
-            <Col sm="2" className="d-flex align-items-center">
-              <Form.Label>
-                <strong>Stock</strong>
-              </Form.Label>
-            </Col>
-            <Col sm="10">
-              <Form.Control
-                type="text"
-                name="stock"
-                value={formData.stock}
+                name="something"
+                value={formData.something}
                 onChange={handleChange}
               />
             </Col>

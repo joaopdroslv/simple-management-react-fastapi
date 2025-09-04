@@ -6,15 +6,17 @@ import Spinner from "react-bootstrap/Spinner";
 
 function ProductsTable({ products, onEdit, onDelete }) {
   return (
-    <Table hover style={{cursor: "pointer"}}>
+    <Table hover style={{ cursor: "pointer" }}>
       <thead>
         <tr>
           <th>#</th>
           <th>Name</th>
           <th>Category</th>
-          <th>Price</th>
-          <th>Stock</th>
-          <th>Available</th>
+          <th>Supplier</th>
+          <th>Is visible</th>
+          <th>Is available</th>
+          <th>Unit price</th>
+          <th>Stock Quantity</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -25,15 +27,23 @@ function ProductsTable({ products, onEdit, onDelete }) {
               <td>{product.id}</td>
               <td>{product.name}</td>
               <td>{product.category}</td>
-              <td>${product.price.toFixed(2)}</td>
-              <td>{product.stock}</td>
+              <td>{product.supplier}</td>
               <td>
-                {product.available ? (
+                {product.is_visible ? (
                   <Badge bg="success">Yes</Badge>
                 ) : (
                   <Badge bg="danger">No</Badge>
                 )}
               </td>
+              <td>
+                {product.is_available ? (
+                  <Badge bg="success">Yes</Badge>
+                ) : (
+                  <Badge bg="danger">No</Badge>
+                )}
+              </td>
+              <td>$ {product.unit_price.toFixed(2)}</td>
+              <td>{product.stock_quantity}</td>
               <td>
                 <div className="d-flex gap-2">
                   <Button
@@ -55,7 +65,7 @@ function ProductsTable({ products, onEdit, onDelete }) {
                     <Trash size={16} />
                   </Button>
                   <Button
-                    variant="outline-info"
+                    variant="outline-primary"
                     size="sm"
                     className="p-2 d-flex align-items-center shadow-sm"
                     style={{ borderRadius: "100px" }}

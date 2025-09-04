@@ -9,7 +9,7 @@ function ProductsFilter() {
         <Form.Group as={Col}>
           <Col className="d-flex align-items-center">
             <Form.Label>
-              <strong>Name</strong>
+              <strong>By name</strong>
             </Form.Label>
           </Col>
           <Col>
@@ -22,7 +22,17 @@ function ProductsFilter() {
         <Form.Group as={Col}>
           <Col className="d-flex align-items-center">
             <Form.Label>
-              <strong>By Category</strong>
+              <strong>By category</strong>
+            </Form.Label>
+          </Col>
+          <Col>
+            <Form.Control type="text" name="category" defaultValue="" />
+          </Col>
+        </Form.Group>
+        <Form.Group as={Col}>
+          <Col className="d-flex align-items-center">
+            <Form.Label>
+              <strong>By supplier</strong>
             </Form.Label>
           </Col>
           <Col>
@@ -31,11 +41,11 @@ function ProductsFilter() {
         </Form.Group>
       </Row>
 
-      <Row sm="4" className="mb-3">
+      <Row className="mb-3">
         <Form.Group as={Col}>
           <Col className="d-flex align-items-center">
             <Form.Label>
-              <strong>More than (Unit Price)</strong>
+              <strong>More than (Unit price)</strong>
             </Form.Label>
           </Col>
           <Col>
@@ -45,20 +55,17 @@ function ProductsFilter() {
         <Form.Group as={Col}>
           <Col className="d-flex align-items-center">
             <Form.Label>
-              <strong>Less than (Unit Price)</strong>
+              <strong>Less than (Unit price)</strong>
             </Form.Label>
           </Col>
           <Col>
             <Form.Control type="text" name="price" defaultValue="" />
           </Col>
         </Form.Group>
-      </Row>
-
-      <Row sm="4" className="d-flex align-items-center mb-3">
         <Form.Group as={Col}>
           <Col className="d-flex align-items-center">
             <Form.Label>
-              <strong>More than (Stock)</strong>
+              <strong>More than (Stock quantity)</strong>
             </Form.Label>
           </Col>
           <Col>
@@ -68,7 +75,7 @@ function ProductsFilter() {
         <Form.Group as={Col}>
           <Col className="d-flex align-items-center">
             <Form.Label>
-              <strong>Less than (Stock)</strong>
+              <strong>Less than (Stock quantity)</strong>
             </Form.Label>
           </Col>
           <Col>
@@ -78,6 +85,16 @@ function ProductsFilter() {
       </Row>
 
       <Row sm="4" className="d-flex align-items-center">
+        <Form.Group as={Col}>
+          <Col className="d-flex align-items-center">
+            <Form.Label>
+              <strong>Is visible</strong>
+            </Form.Label>
+          </Col>
+          <Col>
+            <Form.Control type="text" name="stock" defaultValue="" />
+          </Col>
+        </Form.Group>
         <Form.Group as={Col}>
           <Col className="d-flex align-items-center">
             <Form.Label>

@@ -16,43 +16,10 @@ function ProductsCreateModal({ show, handleClose }) {
       </Modal.Header>
       <Modal.Body className="ps-5 pe-5 mt-4 mb-4">
         <Form id="productCreateForm">
-          <Form.Group as={Row} className="mb-3">
-            <Col sm="2" className="d-flex align-items-center">
-              <Form.Label>
-                <strong>Name</strong>
-              </Form.Label>
-            </Col>
-            <Col sm="10">
-              <Form.Control type="text" />
-            </Col>
-          </Form.Group>
-
-          <Form.Group as={Row} className="mb-3">
-            <Col sm="2" className="d-flex align-items-center">
-              <Form.Label>
-                <strong>Category</strong>
-              </Form.Label>
-            </Col>
-            <Col sm="10">
-              <Form.Control type="text" />
-            </Col>
-          </Form.Group>
-
-          <Form.Group as={Row} className="mb-3">
-            <Col sm="2" className="d-flex align-items-center">
-              <Form.Label>
-                <strong>Price</strong>
-              </Form.Label>
-            </Col>
-            <Col sm="10">
-              <Form.Control type="text" />
-            </Col>
-          </Form.Group>
-
-          <Form.Group as={Row}>
-            <Col sm="2" className="d-flex align-items-center">
-              <Form.Label>
-                <strong>Stock</strong>
+          <Form.Group as={Row} className="d-flex align-items-center">
+            <Col sm="2">
+              <Form.Label className="mb-0">
+                <strong>Something</strong>
               </Form.Label>
             </Col>
             <Col sm="10">
