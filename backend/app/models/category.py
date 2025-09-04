@@ -2,7 +2,6 @@ from datetime import datetime
 
 from app.database.db import Base
 
-# from app.models import Product
 from sqlalchemy import ForeignKey, func, select
 from sqlalchemy.dialects.mysql import DATETIME, INTEGER, TEXT, VARCHAR
 from sqlalchemy.orm import Mapped, column_property, mapped_column, relationship
@@ -52,10 +51,6 @@ class Category(Base):
         INTEGER, ForeignKey("category_data.id"), nullable=False, index=True
     )
     category_data: Mapped["CategoryData"] = relationship("CategoryData")
-
-    products: Mapped[list["Product"]] = relationship(
-        "Product", back_populates="category"
-    )
 
     @property
     def products_quantity(self) -> int:

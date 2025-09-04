@@ -3,7 +3,6 @@ from decimal import Decimal
 
 from app.database.db import Base
 
-# from app.models import Category
 from sqlalchemy import ForeignKey, func, select
 from sqlalchemy.dialects.mysql import BOOLEAN, DATETIME, DECIMAL, INTEGER, VARCHAR
 from sqlalchemy.orm import Mapped, column_property, mapped_column, relationship
@@ -37,7 +36,7 @@ class ProductData(Base):
             "name": self.name,
             "unit_price": float(self.unit_price),
             "unit_size": float(self.unit_size),
-            "unit_size_formatted": f"{float(self.unit_size)} {self.unit_of_measure.type}",
+            "unit_size_formatted": f"{float(self.unit_size)} {self.unit_of_measure.name}",
             "created_at": self.created_at.isoformat(),
             "updated_at": self.updated_at.isoformat(),
         }
@@ -62,11 +61,15 @@ class Product(Base):
     category_id: Mapped[int] = mapped_column(
         INTEGER, ForeignKey("category.id"), nullable=False, index=True
     )
+    category: Mapped["Category"] = relationship("Category")
     # category_name: Mapped[str] = column_property(
     #     select(Category.name).where(Category.id == category_id).scalar_subquery()
     # )
 
-    category: Mapped["Category"] = relationship("Category", back_populates="products")
+    supplier_id: Mapped[int] = mapped_column(
+        INTEGER, ForeignKey("supplier.id"), nullable=False, index=True
+    )
+    supplier: Mapped["Supplier"] = relationship("Supplier")
 
     product_data_id: Mapped[int] = mapped_column(
         INTEGER, ForeignKey("product_data.id"), nullable=False, index=True

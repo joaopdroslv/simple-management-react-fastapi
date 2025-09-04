@@ -1,8 +1,6 @@
 from datetime import datetime
-from decimal import Decimal
 
 from app.database.db import Base
-
 from sqlalchemy import ForeignKey, func, select
 from sqlalchemy.dialects.mysql import BOOLEAN, DATETIME, DECIMAL, INTEGER, VARCHAR
 from sqlalchemy.orm import Mapped, column_property, mapped_column, relationship
@@ -54,11 +52,16 @@ class Supplier(Base):
     )
     supplier_data: Mapped["SupplierData"] = relationship("SupplierData")
 
+    @property
+    def products_quantity(self):
+        return len(self.products)
+
     def to_dict(self):
         return {
             "id": self.id,
             "details": self.supplier_data.to_dict(),
             "is_active": self.is_active,
+            "products_quantity": self.products_quantity,
             "created_at": self.created_at.isoformat(),
             "updated_at": self.updated_at.isoformat(),
         }

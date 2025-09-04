@@ -3,7 +3,15 @@ import time
 from contextlib import asynccontextmanager
 
 from app.database.db import Base, engine
-from app.models import Category, Product, ProductData, UnitOfMeasure
+from app.models import (
+    Category,
+    CategoryData,
+    Product,
+    ProductData,
+    Supplier,
+    SupplierData,
+    UnitOfMeasure,
+)
 from fastapi import FastAPI
 from sqlalchemy import text
 

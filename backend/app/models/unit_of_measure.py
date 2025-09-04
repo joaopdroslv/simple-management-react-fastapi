@@ -13,7 +13,7 @@ class UnitOfMeasure(Base):
     id: Mapped[int] = mapped_column(
         INTEGER, primary_key=True, autoincrement=True, index=True
     )
-    type: Mapped[str] = mapped_column(VARCHAR(32), nullable=False)
+    name: Mapped[str] = mapped_column(VARCHAR(32), nullable=False)
     created_at: Mapped[datetime] = mapped_column(
         DATETIME, server_default=func.now(), nullable=False
     )
@@ -24,7 +24,7 @@ class UnitOfMeasure(Base):
     def to_dict(self):
         return {
             "id": self.id,
-            "type": self.type,
+            "name": self.name,
             "created_at": self.created_at.isoformat(),
             "updated_at": self.updated_at.isoformat(),
         }
