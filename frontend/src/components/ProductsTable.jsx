@@ -6,7 +6,7 @@ import Spinner from "react-bootstrap/Spinner";
 
 function ProductsTable({ products, onEdit, onDelete }) {
   return (
-    <Table striped hover>
+    <Table hover style={{cursor: "pointer"}}>
       <thead>
         <tr>
           <th>#</th>
