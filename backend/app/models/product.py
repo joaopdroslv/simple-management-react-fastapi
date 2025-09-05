@@ -4,8 +4,8 @@ from decimal import Decimal
 from app.database.db import Base
 from sqlalchemy import ForeignKey, func, select
 from sqlalchemy.dialects.mysql import BOOLEAN, DATETIME, DECIMAL, INTEGER, VARCHAR
-from sqlalchemy.orm import Mapped, column_property, mapped_column, relationship
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.orm import Mapped, column_property, mapped_column, relationship
 
 
 class ProductData(Base):
