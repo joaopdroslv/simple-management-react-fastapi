@@ -26,8 +26,8 @@ function ProductsTable({ products, onEdit, onDelete }) {
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.details.name}</td>
-              <td>{product.category.name}</td>
-              <td>{product.supplier.name}</td>
+              <td>{product.category.details.name}</td>
+              <td>{product.supplier.details.name}</td>
               <td>
                 {product.is_visible ? (
                   <Badge bg="success">Yes</Badge>
@@ -43,7 +43,7 @@ function ProductsTable({ products, onEdit, onDelete }) {
                 )}
               </td>
               <td>$ {product.details.unit_price.toFixed(2)}</td>
-              <td>{product.details.stock_quantity}</td>
+              <td>{product.stock_quantity}</td>
               <td>
                 <div className="d-flex gap-2">
                   <Button
