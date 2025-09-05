@@ -24,18 +24,12 @@ class ProductData(Base):
         DATETIME, server_default=func.now(), onupdate=func.now(), nullable=False
     )
 
-    unit_of_measure_id: Mapped[int] = mapped_column(
-        INTEGER, ForeignKey("unit_of_measure.id"), nullable=False, index=True
-    )
-    unit_of_measure: Mapped["UnitOfMeasure"] = relationship("UnitOfMeasure")
-
     def to_dict(self):
         return {
             "id": self.id,
             "name": self.name,
             "unit_price": float(self.unit_price),
             "unit_size": float(self.unit_size),
-            "unit_size_formatted": f"{float(self.unit_size)} {self.unit_of_measure.name}",
             "created_at": self.created_at.isoformat(),
             "updated_at": self.updated_at.isoformat(),
         }
@@ -56,6 +50,11 @@ class Product(Base):
     updated_at: Mapped[datetime] = mapped_column(
         DATETIME, server_default=func.now(), onupdate=func.now(), nullable=False
     )
+
+    unit_of_measure_id: Mapped[int] = mapped_column(
+        INTEGER, ForeignKey("unit_of_measure.id"), nullable=False, index=True
+    )
+    unit_of_measure: Mapped["UnitOfMeasure"] = relationship("UnitOfMeasure")
 
     category_id: Mapped[int] = mapped_column(
         INTEGER, ForeignKey("category.id"), nullable=False, index=True
@@ -95,6 +94,7 @@ class Product(Base):
         return {
             "id": self.id,
             "details": self.product_data.to_dict(),
+            "unit_of_measure": self.unit_of_measure.to_dict(),
             "category": self.category.to_dict(),
             "is_visible": self.is_visible,
             "stock_quantity": self.stock_quantity,
