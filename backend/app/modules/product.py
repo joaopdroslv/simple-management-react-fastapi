@@ -1,8 +1,8 @@
 from typing import List, Tuple
 
-from app.schemas.product import GetProductsForm
 from app.models import Product, ProductData
 from app.modules.pagination import execute_query_with_pagination
+from app.schemas.product import GetProductsForm
 from sqlalchemy.orm import Session
 
 
@@ -18,7 +18,9 @@ def get_products(
     query = db.query(Product)
 
     if form.name is not None:
-        query = query.filter(Product.product_data.has(ProductData.name.ilike(f"%{form.name}%")))
+        query = query.filter(
+            Product.product_data.has(ProductData.name.ilike(f"%{form.name}%"))
+        )
 
     if form.category_id is not None:
         query = query.filter(Product.category_id == form.category_id)
@@ -27,10 +29,14 @@ def get_products(
         query = query.filter(Product.supplier_id == form.supplier_id)
 
     if form.price_higher_than is not None:
-        query = query.filter(Product.product_data.has(ProductData.unit_price >= form.price_higher_than))
+        query = query.filter(
+            Product.product_data.has(ProductData.unit_price >= form.price_higher_than)
+        )
 
     if form.price_lower_than is not None:
-        query = query.filter(Product.product_data.has(ProductData.unit_price <= form.price_lower_than))
+        query = query.filter(
+            Product.product_data.has(ProductData.unit_price <= form.price_lower_than)
+        )
 
     if form.stock_higher_than is not None:
         query = query.filter(Product.stock_quantity >= form.stock_higher_than)

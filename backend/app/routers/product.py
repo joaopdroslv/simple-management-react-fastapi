@@ -1,14 +1,13 @@
 import logging
 
 from app.database.deps import get_db
-from app.models import Product
 from app.modules import product
 from app.schemas.product import (
     CreateProductForm,
+    GetProductsForm,
     GetProductsResponse,
     ResponseProduct,
     UpdateProductForm,
-    GetProductsForm,
 )
 from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
