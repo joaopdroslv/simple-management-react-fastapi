@@ -8,6 +8,7 @@ from app.schemas.product import (
     GetProductsResponse,
     ResponseProduct,
     UpdateProductForm,
+    GetProductsForm,
 )
 from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
@@ -21,7 +22,7 @@ router = APIRouter(prefix="/product", tags=["product"])
 @router.get("/{id}", response_model=ResponseProduct)
 def get_product(id: int, db: Session = Depends(get_db)):
 
-    db_product = product.get_product(db, id)
+    db_product = product.get_product(id, db)
 
     if not db_product:
         return JSONResponse(status_code=404, content={"message": "Product not found."})
@@ -30,9 +31,11 @@ def get_product(id: int, db: Session = Depends(get_db)):
 
 
 @router.get("")
-def get_products(page: int = 1, limit: int = 10, db: Session = Depends(get_db)):
+def get_products(
+    form: GetProductsForm, page: int = 1, limit: int = 10, db: Session = Depends(get_db)
+):
 
-    total, db_products = product.get_products(db, page, limit)
+    total, db_products = product.get_products(form, page, limit, db)
 
     return JSONResponse(
         status_code=200,

@@ -22,6 +22,19 @@ class GetProductsResponse(BaseModel):
     products: List[ResponseProduct]
 
 
+class GetProductsForm(BaseModel):
+
+    name: str = None
+    category_id: int = None
+    supplier_id: int = None
+    price_higher_than: float = None
+    price_lower_than: float = None
+    stock_higher_than: int = None
+    stock_lower_than: int = None
+    is_visible: bool = None
+    is_available: bool = None
+
+
 class CreateProductForm(BaseModel): ...
 
 

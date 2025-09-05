@@ -5,6 +5,7 @@ from app.database.db import Base
 from sqlalchemy import ForeignKey, func, select
 from sqlalchemy.dialects.mysql import BOOLEAN, DATETIME, DECIMAL, INTEGER, VARCHAR
 from sqlalchemy.orm import Mapped, column_property, mapped_column, relationship
+from sqlalchemy.ext.hybrid import hybrid_property
 
 
 class ProductData(Base):
@@ -74,9 +75,13 @@ class Product(Base):
     )
     product_data: Mapped["ProductData"] = relationship("ProductData")
 
-    @property
-    def is_available(self):
+    @hybrid_property
+    def is_available(self) -> bool:
         return self.stock_quantity > 0
+
+    @is_available.expression
+    def is_available(cls):
+        return cls.stock_quantity > 0
 
     @property
     def sold_this_month(self):
