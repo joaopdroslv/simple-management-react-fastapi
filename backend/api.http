@@ -1,0 +1,20 @@
+@baseUrl = http://localhost:8000
+
+### Get a single product
+GET {{baseUrl}}/product/1
+
+### Get multiple products with optional filtering
+GET {{baseUrl}}/product
+Content-Type: application/json
+
+{
+    // "name": "A",
+    // "category_id": 1,
+    // "supplier_id": 1,
+    // "price_higher_than": 1,
+    // "price_lower_than": 999,
+    // "stock_higher_than": 1,
+    // "stock_lower_than": 99
+    // "is_visible": true,
+    "is_available": false
+}
