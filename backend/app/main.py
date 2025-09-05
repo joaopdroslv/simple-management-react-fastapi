@@ -1,6 +1,7 @@
 import app.logs
 from app.lifespan import lifespan
 from app.routers.category import router as category_router
+from app.routers.supplier import router as supplier_router
 from app.routers.product import router as product_router
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -16,4 +17,5 @@ app.add_middleware(
 )
 
 app.include_router(category_router)
+app.include_router(supplier_router)
 app.include_router(product_router)

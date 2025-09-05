@@ -22,3 +22,7 @@ Content-Type: application/json
 
 ### Get multiple categories with pagination
 GET {{baseUrl}}/category
+
+
+### Get multiple suppliers with pagination
+GET {{baseUrl}}/supplier
