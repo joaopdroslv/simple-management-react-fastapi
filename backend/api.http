@@ -3,7 +3,7 @@
 ### Get a single product
 GET {{baseUrl}}/product/1
 
-### Get multiple products with optional filtering
+### Get multiple products with pagination & optional filtering
 GET {{baseUrl}}/product
 Content-Type: application/json
 
@@ -18,3 +18,7 @@ Content-Type: application/json
     // "is_visible": true,
     "is_available": false
 }
+
+
+### Get multiple categories with pagination
+GET {{baseUrl}}/category
