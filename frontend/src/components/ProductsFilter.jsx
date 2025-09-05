@@ -14,25 +14,16 @@ function ProductsFilter() {
   useEffect(() => {
     const fetchCategories = async () => {
       getCategories()
-      .then((response) => {
-        console.log("Step 2 [categories]");
-        console.log(response.categories);
-        setCategories(response.categories);
-      })
+      .then((response) => setCategories(response.categories))
       .catch(console.error);
     };
     fetchCategories();
   }, []);
 
   useEffect(() => {
-    console.log("Step 1 [suppliers]");
     const fetchSuppliers = () => {
       getSuppliers()
-        .then((response) => {
-          console.log("Step 2 [suppliers]");
-          console.log(response.suppliers);
-          setSuppliers(response.suppliers)
-        })
+        .then((response) => setSuppliers(response.suppliers))
         .catch(console.error);
     };
     fetchSuppliers();
