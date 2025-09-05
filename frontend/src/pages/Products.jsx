@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import ProductsTable from "../components/ProductsTable";
 import { getProducts } from "../api";
 import { useState, useEffect } from "react";
-import { List, CirclePlus, Search } from "lucide-react";
+import { List, CirclePlus } from "lucide-react";
 import Button from "react-bootstrap/Button";
 import ProductsCreateModal from "../components/ProductsCreateModal";
 import ProductsUpdateModal from "../components/ProductsUpdateModal";
@@ -67,7 +67,7 @@ function Products() {
     // fetch products function
     const fetchProducts = () => {
       getProducts()
-        .then((response) => setProducts(response.resources.products))
+        .then((response) => setProducts(response.products))
         .catch(console.error);
     };
 
@@ -101,97 +101,26 @@ function Products() {
       <section className="mt-5 mb-4">
         <Container className="bg-white rounded p-5 shadow-sm">
           <ProductsFilter />
-          <div className="d-flex justify-content-end align-items-center gap-3">
-            <Button
-              variant="outline-success"
-              className="p-2 d-flex align-items-center gap-2 shadow-sm mt-4"
-            >
-              <Search size={24} />
-              Apply filter
-            </Button>
+        </Container>
+      </section>
+
+      <section className="mt-5 mb-4">
+        <Container className="bg-white rounded p-5 shadow-sm">
+          <div className="d-flex justify-content-end align-items-center mb-4">
             <Button
               variant="outline-primary"
-              className="p-2 d-flex align-items-center gap-2 shadow-sm mt-4"
+              className="p-2 d-flex align-items-center gap-2 shadow-sm"
               onClick={handleOpenCreateModal}
             >
               <CirclePlus size={24} />
               Add a product
             </Button>
           </div>
-        </Container>
-      </section>
-
-      <section className="mt-4 mb-4">
-        <Container className="bg-white rounded p-5 shadow-sm">
           <ProductsTable
-            products={[
-              {
-                id: 1,
-                name: "Something",
-                category: "Electronics",
-                supplier: "John Doe",
-                is_visible: true,
-                is_available: true,
-                unit_price: 9.99,
-                stock_quantity: 9,
-              },
-              {
-                id: 2,
-                name: "Useless Object",
-                category: "Clothing",
-                supplier: "Anne Frank",
-                is_visible: true,
-                is_available: true,
-                unit_price: 99.99,
-                stock_quantity: 99,
-              },
-              {
-                id: 3,
-                name: "Cool Gadget",
-                category: "Electronics",
-                supplier: "Jason Statham",
-                is_visible: false,
-                is_available: false,
-                unit_price: 199.99,
-                stock_quantity: 0,
-              },
-            ]}
+            products={products}
             onEdit={handleOpenUpdateModal}
             onDelete={handleOpenConfirmationModal}
           />
-          {/* {[
-            {
-              id: 1,
-              name: "Something",
-              category: "Electronics",
-              price: 99.99,
-              stock: 99,
-              available: true,
-            },
-            {
-              id: 2,
-              name: "Another Thing",
-              category: "Clothing",
-              price: 49.99,
-              stock: 50,
-              available: true,
-            },
-            {
-              id: 3,
-              name: "Cool Gadget",
-              category: "Electronics",
-              price: 199.99,
-              stock: 20,
-              available: true,
-            },
-          ].map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onEdit={handleOpenUpdateModal}
-              onDelete={handleOpenConfirmationModal}
-            />
-          ))} */}
         </Container>
       </section>
 

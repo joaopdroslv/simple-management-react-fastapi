@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { CircleCheckBig, CircleX, Pencil } from "lucide-react";
+import { CircleCheckBig, CircleX, SquarePen } from "lucide-react";
 import { useEffect, useState } from "react";
 import { updateProduct } from "../api";
 
@@ -42,7 +42,7 @@ function ProductsUpdateModal({ show, handleClose, product }) {
     <Modal size="lg" centered show={show} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title className="d-flex align-items-center gap-3">
-          <Pencil size={30} />
+          <SquarePen size={30} />
           <h2 className="mb-0">Edit</h2>
         </Modal.Title>
       </Modal.Header>
