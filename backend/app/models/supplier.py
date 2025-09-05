@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from app.database.db import Base
-from sqlalchemy import ForeignKey, func, select
+from sqlalchemy import ForeignKey, func, select, text
 from sqlalchemy.dialects.mysql import BOOLEAN, DATETIME, DECIMAL, INTEGER, VARCHAR
 from sqlalchemy.orm import Mapped, column_property, mapped_column, relationship
 
@@ -52,9 +52,12 @@ class Supplier(Base):
     )
     supplier_data: Mapped["SupplierData"] = relationship("SupplierData")
 
-    @property
-    def products_quantity(self):
-        return len(self.products)
+    products_quantity = column_property(
+        select(func.count().label("count"))
+        .select_from(text("product"))
+        .where(text("product.supplier_id") == id)
+        .scalar_subquery()
+    )
 
     def to_dict(self):
         return {

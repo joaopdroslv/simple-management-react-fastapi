@@ -96,6 +96,7 @@ class Product(Base):
             "details": self.product_data.to_dict(),
             "unit_of_measure": self.unit_of_measure.to_dict(),
             "category": self.category.to_dict(),
+            "supplier": self.supplier.to_dict(),
             "is_visible": self.is_visible,
             "stock_quantity": self.stock_quantity,
             "is_available": self.is_available,
