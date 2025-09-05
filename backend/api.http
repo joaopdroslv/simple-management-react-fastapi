@@ -4,7 +4,7 @@
 GET {{baseUrl}}/product/1
 
 ### Get multiple products with pagination & optional filtering
-GET {{baseUrl}}/product
+POST {{baseUrl}}/product
 Content-Type: application/json
 
 {
@@ -16,7 +16,7 @@ Content-Type: application/json
     // "stock_higher_than": 1,
     // "stock_lower_than": 99
     // "is_visible": true,
-    "is_available": false
+    // "is_available": false
 }
 
 

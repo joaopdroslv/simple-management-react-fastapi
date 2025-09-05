@@ -29,7 +29,7 @@ def get_product(id: int, db: Session = Depends(get_db)):
     return JSONResponse(status_code=200, content={"product": db_product.to_dict()})
 
 
-@router.get("")
+@router.post("")
 def get_products(
     form: GetProductsForm, page: int = 1, limit: int = 10, db: Session = Depends(get_db)
 ):
