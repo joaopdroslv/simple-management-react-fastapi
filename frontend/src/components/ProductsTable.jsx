@@ -79,7 +79,7 @@ function ProductsTable({ products, onEdit, onDelete }) {
         ) : (
           <tr>
             <td
-              colSpan={7}
+              colSpan={9}
               className="d-flex- align-items-center text-center p-3"
             >
               <Spinner animation="border" />
