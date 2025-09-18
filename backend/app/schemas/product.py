@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -24,15 +24,15 @@ class GetProductsResponse(BaseModel):
 
 class GetProductsForm(BaseModel):
 
-    name: str = None
-    category_id: int = None
-    supplier_id: int = None
-    price_higher_than: float = None
-    price_lower_than: float = None
-    stock_higher_than: int = None
-    stock_lower_than: int = None
-    is_visible: bool = None
-    is_available: bool = None
+    name: Optional[str]
+    category_id: Optional[int]
+    supplier_id: Optional[int]
+    price_higher_than: Optional[float]
+    price_lower_than: Optional[float]
+    stock_higher_than: Optional[int]
+    stock_lower_than: Optional[int]
+    is_visible: Optional[bool]
+    is_available: Optional[bool]
 
 
 class CreateProductForm(BaseModel): ...
