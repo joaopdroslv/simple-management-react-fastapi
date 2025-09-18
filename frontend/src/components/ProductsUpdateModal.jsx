@@ -13,17 +13,11 @@ function ProductsUpdateModal({ show, handleClose, product }) {
     something: "",
   });
 
-  /*
-    Uses a useEffect that “listens” for changes in the product to
-    update the state every time the product changes
-  */
-  /*
-    useEffect(() => {
-      setFormData({
-        something: product?.something || "",
-      });
-    }, [product]);
-  */
+  useEffect(() => {
+    setFormData({
+      something: product?.something || "",
+    });
+  }, [product]);
 
   const handleChange = (event) => {
     setFormData({
