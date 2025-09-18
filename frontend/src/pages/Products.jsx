@@ -9,6 +9,7 @@ import ProductsUpdateModal from "../components/ProductsUpdateModal";
 import ConfirmationModal from "../components/ConfirmationModal";
 import { deleteProduct, getCategories, getSuppliers } from "../api";
 import ProductsFilter from "../components/ProductsFilter";
+import Pagination from "react-bootstrap/Pagination";
 
 function Products() {
   const [products, setProducts] = useState(null);
@@ -107,15 +108,12 @@ function Products() {
       })
     );
 
-    console.log(filters);
-    console.log(normalizedFilters);
-    console.log(pagination);
-
     const response = await getProducts(
       normalizedFilters,
       pagination.page,
       pagination.limit
     );
+
     setProducts(response.products);
     setPagination({ ...response.pagination });
   };
@@ -165,9 +163,9 @@ function Products() {
         </Container>
       </section>
 
-      <section className="mt-5 mb-4">
+      <section className="mt-5 mb-5">
         <Container className="bg-white rounded p-5 shadow-sm">
-          <div className="d-flex justify-content-end align-items-center mb-4">
+          <div className="d-flex justify-content-end align-items-center">
             <Button
               variant="outline-primary"
               className="p-2 d-flex align-items-center gap-2 shadow-sm"
@@ -177,11 +175,32 @@ function Products() {
               Add a product
             </Button>
           </div>
-          <ProductsTable
-            products={products}
-            onEdit={handleOpenUpdateModal}
-            onDelete={handleOpenConfirmationModal}
-          />
+          <div className="mt-5">
+            <ProductsTable
+              products={products}
+              onEdit={handleOpenUpdateModal}
+              onDelete={handleOpenConfirmationModal}
+            />
+          </div>
+          <div className="d-flex justify-content-center mt-5">
+            <Pagination size="sm" className="mb-0 pb-0">
+              <Pagination.First />
+              <Pagination.Prev />
+              <Pagination.Item>{1}</Pagination.Item>
+              <Pagination.Ellipsis />
+
+              <Pagination.Item>{10}</Pagination.Item>
+              <Pagination.Item>{11}</Pagination.Item>
+              <Pagination.Item active>{12}</Pagination.Item>
+              <Pagination.Item>{13}</Pagination.Item>
+              <Pagination.Item disabled>{14}</Pagination.Item>
+
+              <Pagination.Ellipsis />
+              <Pagination.Item>{20}</Pagination.Item>
+              <Pagination.Next />
+              <Pagination.Last />
+            </Pagination>
+          </div>
         </Container>
       </section>
 
