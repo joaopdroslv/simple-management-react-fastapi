@@ -20,14 +20,17 @@ export async function getSuppliers() {
   return await response.json();
 }
 
-export async function getProducts() {
-  const response = await fetch(`${API_URL}/product?page=1&limit=10`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({}),
-  });
+export async function getProducts(filters, page, limit) {
+  const response = await fetch(
+    `${API_URL}/product?page=${page}&limit=${limit}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(filters),
+    }
+  );
   if (!response.ok) {
     throw new Error("Failed to fetch products.");
   }

@@ -3,43 +3,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import { Search, BrushCleaning } from "lucide-react";
-import { getCategories, getProducts } from "../api";
-import { getSuppliers } from "../api";
-import { useEffect, useState } from "react";
 
-function ProductsFilter() {
-  const [categories, setCategories] = useState([]);
-  const [suppliers, setSuppliers] = useState([]);
-  const [filters, setFilters] = useState({
-    name: "",
-    category_id: "",
-    supplier_id: "",
-    price_higher_than: "",
-    price_lower_than: "",
-    stock_higher_than: "",
-    stock_lower_than: "",
-    is_visible: "",
-    is_available: "",
-  });
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      getCategories()
-        .then((response) => setCategories(response.categories))
-        .catch(console.error);
-    };
-    fetchCategories();
-  }, []);
-
-  useEffect(() => {
-    const fetchSuppliers = () => {
-      getSuppliers()
-        .then((response) => setSuppliers(response.suppliers))
-        .catch(console.error);
-    };
-    fetchSuppliers();
-  }, []);
-
+function ProductsFilter({ filters, setFilters, categories, suppliers }) {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFilters((prev) => ({
@@ -64,8 +29,6 @@ function ProductsFilter() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(filters);
-    // const response = await getProducts(filters);
   };
 
   return (
@@ -204,14 +167,14 @@ function ProductsFilter() {
       </Row>
 
       <div className="d-flex justify-content-end align-items-center gap-3">
-        <Button
+        {/* <Button
           type="submit"
           variant="outline-success"
           className="p-2 d-flex align-items-center gap-2 shadow-sm mt-4"
         >
           <Search size={24} />
           Apply filters
-        </Button>
+        </Button> */}
         <Button
           variant="outline-warning"
           className="p-2 d-flex align-items-center gap-2 shadow-sm mt-4"

@@ -7,8 +7,7 @@ import Button from "react-bootstrap/Button";
 import ProductsCreateModal from "../components/ProductsCreateModal";
 import ProductsUpdateModal from "../components/ProductsUpdateModal";
 import ConfirmationModal from "../components/ConfirmationModal";
-import { deleteProduct } from "../api";
-import ProductCard from "../components/ui/ProductCard";
+import { deleteProduct, getCategories, getSuppliers } from "../api";
 import ProductsFilter from "../components/ProductsFilter";
 
 function Products() {
@@ -18,6 +17,33 @@ function Products() {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [productToDelete, setProductToDelete] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const [suppliers, setSuppliers] = useState([]);
+  const [filters, setFilters] = useState({
+    name: "",
+    category_id: "",
+    supplier_id: "",
+    price_higher_than: "",
+    price_lower_than: "",
+    stock_higher_than: "",
+    stock_lower_than: "",
+    is_visible: "",
+    is_available: "",
+  });
+  const [pagination, setPagination] = useState({
+    page: 1,
+    limit: 50,
+    total: 0,
+  });
+
+  useEffect(() => {
+    getCategories()
+      .then((response) => setCategories(response.categories))
+      .catch(console.error);
+    getSuppliers()
+      .then((response) => setSuppliers(response.suppliers))
+      .catch(console.error);
+  }, []);
 
   const handleOpenCreateModal = () => {
     setShowCreateModal(true);
@@ -58,19 +84,43 @@ function Products() {
     handleCloseConfirmationModal();
   };
 
-  /*
-    - This useEffect now depends on "showCreateModal"
-    - When the modal is closed, it activates the interval to fetch data every 30 seconds
-    - When the modal is opened, it cancels the interval because the effect will run again when the modal closes
-  */
-  useEffect(() => {
-    // fetch products function
-    const fetchProducts = () => {
-      getProducts()
-        .then((response) => setProducts(response.products))
-        .catch(console.error);
-    };
+  const fetchProducts = async () => {
+    setPagination((prev) => ({ ...prev, page: 1 }));
 
+    const normalizedFilters = Object.fromEntries(
+      Object.entries(filters).map(([key, value]) => {
+        if (value === "") return [key, null]; // Empty strings to null
+        if (
+          [
+            "category_id",
+            "supplier_id",
+            "stock_higher_than",
+            "stock_lower_than",
+          ].includes(key)
+        )
+          return [key, Number(value)];
+        if (["price_higher_than", "price_lower_than"].includes(key))
+          return [key, parseFloat(value)];
+        if (["is_visible", "is_available"].includes(key))
+          return [key, value === "true"]; // "true"/"false" to boolean
+        return [key, value];
+      })
+    );
+
+    console.log(filters);
+    console.log(normalizedFilters);
+    console.log(pagination);
+
+    const response = await getProducts(
+      normalizedFilters,
+      pagination.page,
+      pagination.limit
+    );
+    setProducts(response.products);
+    setPagination({ ...response.pagination });
+  };
+
+  useEffect(() => {
     fetchProducts();
 
     if (!showCreateModal && !showUpdateModal) {
@@ -80,7 +130,13 @@ function Products() {
     }
 
     return undefined; // No cleanup needed if modal is open
-  }, [showCreateModal, showUpdateModal]); // Runs effect when showCreateModal changes
+  }, [
+    filters,
+    pagination.page,
+    pagination.limit,
+    showCreateModal,
+    showUpdateModal,
+  ]);
 
   return (
     <>
@@ -100,7 +156,12 @@ function Products() {
 
       <section className="mt-5 mb-4">
         <Container className="bg-white rounded p-5 shadow-sm">
-          <ProductsFilter />
+          <ProductsFilter
+            filters={filters}
+            setFilters={setFilters}
+            categories={categories}
+            suppliers={suppliers}
+          />
         </Container>
       </section>
 
@@ -138,7 +199,7 @@ function Products() {
       <ConfirmationModal
         show={showConfirmationModal}
         handleClose={handleCloseConfirmationModal}
-        onConfirm={handleDeleteProductConfirmed} // post-confirmation callback function
+        onConfirm={handleDeleteProductConfirmed}
       />
     </>
   );
